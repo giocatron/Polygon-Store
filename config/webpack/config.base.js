@@ -6,7 +6,8 @@ const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const webpack = require("webpack");
 
 if (!process.env.API_URI) {
-  throw new Error("Environment variable API_URI not set");
+  process.env.API_URI = "https://zizopixels11-core.herokuapp.com/graphql/"
+  //throw new Error("Environment variable API_URI not set");
 }
 
 module.exports = ({ sourceDir, distDir }) => ({
