@@ -1,8 +1,6 @@
 import React, { useCallback } from "react";
-import { useIntl } from "react-intl";
 
 import { InputSelect, TextField } from "@components/molecules";
-import { commonMessages } from "@temp/intl";
 
 import * as S from "./styles";
 import { PropsWithFormik } from "./types";
@@ -18,14 +16,13 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
   countriesOptions,
   defaultValue,
   setFieldValue,
-  testingContext,
   includeEmail = false,
 }) => {
   const basicInputProps = useCallback(
     () => ({ onBlur: handleBlur, onChange: handleChange }),
     [handleChange, handleBlur]
   );
-  const intl = useIntl();
+
   const fieldErrors: any = {};
 
   if (errors) {
@@ -37,25 +34,22 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
   }
 
   return (
-    <S.AddressForm
-      id={formId}
-      ref={formRef}
-      onSubmit={handleSubmit}
-      data-test={testingContext}
-    >
+    <S.AddressForm id={formId} ref={formRef} onSubmit={handleSubmit}>
       <S.Wrapper>
         <S.RowWithTwoCells>
           <TextField
+            data-cy="addressFormFirstName"
             name="firstName"
-            label={intl.formatMessage(commonMessages.firstName)}
+            label="First Name"
             value={values!.firstName}
             autoComplete="given-name"
             errors={fieldErrors!.firstName}
             {...basicInputProps()}
           />
           <TextField
+            data-cy="addressFormLastName"
             name="lastName"
-            label={intl.formatMessage(commonMessages.lastName)}
+            label="Last Name"
             value={values!.lastName}
             autoComplete="family-name"
             errors={fieldErrors!.lastName}
@@ -64,19 +58,19 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
         </S.RowWithTwoCells>
         <S.RowWithTwoCells>
           <TextField
+            data-cy="addressFormCompanyName"
             name="companyName"
-            label={intl.formatMessage({
-              defaultMessage: "Company Name (Optional)",
-            })}
+            label="Company Name (Optional)"
             value={values!.companyName}
             autoComplete="organization"
             errors={fieldErrors!.companyName}
             {...basicInputProps()}
           />
           <TextField
+            data-cy="addressFormPhone"
             name="phone"
-            label={intl.formatMessage(commonMessages.phone)}
-            value={values!.phone || undefined}
+            label="Phone"
+            value={values!.phone}
             autoComplete="tel"
             errors={fieldErrors!.phone}
             {...basicInputProps()}
@@ -84,8 +78,9 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
         </S.RowWithTwoCells>
         <S.RowWithOneCell>
           <TextField
+            data-cy="addressFormStreetAddress1"
             name="streetAddress1"
-            label={intl.formatMessage({ defaultMessage: "Address line 1" })}
+            label="Address line 1"
             value={values!.streetAddress1}
             autoComplete="address-line1"
             errors={fieldErrors!.streetAddress1}
@@ -94,8 +89,9 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
         </S.RowWithOneCell>
         <S.RowWithOneCell>
           <TextField
+            data-cy="addressFormStreetAddress2"
             name="streetAddress2"
-            label={intl.formatMessage({ defaultMessage: "Address line 2" })}
+            label="Address line 2"
             value={values!.streetAddress2}
             autoComplete="address-line2"
             errors={fieldErrors!.streetAddress2}
@@ -104,16 +100,18 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
         </S.RowWithOneCell>
         <S.RowWithTwoCells>
           <TextField
+            data-cy="addressFormCity"
             name="city"
-            label={intl.formatMessage({ defaultMessage: "City" })}
+            label="City"
             value={values!.city}
-            autoComplete="address-level2"
+            autoComplete="address-level1"
             errors={fieldErrors!.city}
             {...basicInputProps()}
           />
           <TextField
+            data-cy="addressFormPostalCode"
             name="postalCode"
-            label={intl.formatMessage({ defaultMessage: "ZIP/Postal Code" })}
+            label="ZIP/Postal Code"
             value={values!.postalCode}
             autoComplete="postal-code"
             errors={fieldErrors!.postalCode}
@@ -122,8 +120,11 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
         </S.RowWithTwoCells>
         <S.RowWithTwoCells>
           <InputSelect
+            inputProps={{
+              "data-cy": "addressFormCountry",
+            }}
             defaultValue={defaultValue}
-            label={intl.formatMessage({ defaultMessage: "Country" })}
+            label="Country"
             name="country"
             options={countriesOptions}
             value={
@@ -137,13 +138,13 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
             optionLabelKey="country"
             optionValueKey="code"
             errors={fieldErrors!.country}
-            autoComplete="country"
           />
           <TextField
+            data-cy="addressFormCountryArea"
             name="countryArea"
-            label={intl.formatMessage({ defaultMessage: "State/province" })}
+            label="State/province"
             value={values!.countryArea}
-            autoComplete="address-level1"
+            autoComplete="address-level2"
             errors={fieldErrors!.countryArea}
             {...basicInputProps()}
           />
@@ -151,8 +152,9 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
         {includeEmail && (
           <S.RowWithTwoCells>
             <TextField
+              data-cy="addressFormEmail"
               name="email"
-              label={intl.formatMessage(commonMessages.shortEmail)}
+              label="Email"
               value={values!.email}
               autoComplete="email"
               errors={fieldErrors!.email}

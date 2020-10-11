@@ -1,5 +1,4 @@
 import React from "react";
-import { FormattedMessage } from "react-intl";
 
 const ForgottenPassword: React.FC<{
   onClick: () => void;
@@ -7,13 +6,9 @@ const ForgottenPassword: React.FC<{
   <>
     <div className="login__content__password-reminder">
       <p>
-        <FormattedMessage defaultMessage="Have you forgotten your password?" />{" "}
-        <span
-          className="u-link"
-          onClick={onClick}
-          data-test="accountOverlayForgottenPasswordLink"
-        >
-          <FormattedMessage defaultMessage="Click Here" />
+        Have you forgotten your password?&nbsp;
+        <span className="u-link" onClick={onClick}>
+          Click Here
         </span>
       </p>
     </div>

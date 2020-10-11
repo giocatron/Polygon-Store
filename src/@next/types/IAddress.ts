@@ -8,7 +8,7 @@ export interface IAddress {
   city?: string;
   postalCode?: string;
   countryArea?: string;
-  phone?: string | null;
+  phone?: string;
   country?: {
     code?: string;
     country?: string;

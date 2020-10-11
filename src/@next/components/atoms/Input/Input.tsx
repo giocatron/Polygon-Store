@@ -66,7 +66,6 @@ export const Input: React.FC<IProps> = ({
           onBlur={handleBlur}
           disabled={disabled}
           onChange={onChange}
-          labelBackground={labelBackground}
         />
         {label && (
           <InputLabel

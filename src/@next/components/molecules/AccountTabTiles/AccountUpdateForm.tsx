@@ -1,11 +1,8 @@
 import { Formik } from "formik";
 import React from "react";
-import { useIntl, FormattedMessage } from "react-intl";
-import { Button, ButtonLink } from "@components/atoms";
-import { commonMessages } from "@temp/intl";
-
 import { TextField } from "../TextField";
 
+import { Button, ButtonLink } from "@components/atoms";
 import * as S from "./styles";
 
 export const AccountUpdateForm: React.FC<{
@@ -16,7 +13,6 @@ export const AccountUpdateForm: React.FC<{
     lastName: string;
   };
 }> = ({ handleSubmit, hide, initialValues }) => {
-  const intl = useIntl();
   return (
     <>
       <Formik
@@ -38,12 +34,12 @@ export const AccountUpdateForm: React.FC<{
           isValid,
         }) => {
           return (
-            <S.Form onSubmit={handleSubmit} data-test="accountUpdateForm">
+            <S.Form onSubmit={handleSubmit}>
               <S.ContentEditOneLine>
                 <S.ContentExtendInput>
                   <TextField
                     name="firstName"
-                    label={intl.formatMessage(commonMessages.firstName)}
+                    label="First Name"
                     type="text"
                     value={values.firstName}
                     onBlur={handleBlur}
@@ -53,7 +49,7 @@ export const AccountUpdateForm: React.FC<{
                 <S.ContentExtendInput>
                   <TextField
                     name="lastName"
-                    label={intl.formatMessage(commonMessages.lastName)}
+                    label="Last Name"
                     type="text"
                     value={values.lastName}
                     onBlur={handleBlur}
@@ -62,21 +58,15 @@ export const AccountUpdateForm: React.FC<{
                 </S.ContentExtendInput>
               </S.ContentEditOneLine>
               <S.FormButtons>
-                <ButtonLink
-                  testingContext="cancelButton"
-                  type="button"
-                  color="secondary"
-                  onClick={hide}
-                >
-                  <FormattedMessage {...commonMessages.cancel} />
+                <ButtonLink type="button" color="secondary" onClick={hide}>
+                  Cancel
                 </ButtonLink>
                 <Button
-                  testingContext="submit"
                   type="submit"
                   disabled={isSubmitting || !isValid}
                   size="sm"
                 >
-                  <FormattedMessage {...commonMessages.save} />
+                  Save
                 </Button>
               </S.FormButtons>
             </S.Form>

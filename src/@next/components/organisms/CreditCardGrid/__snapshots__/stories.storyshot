@@ -242,7 +242,8 @@ exports[`Storyshots @components/organisms/CreditCardGrid default 1`] = `
               </svg>
             </p>
             <p>
-              Add new card
+              Add new 
+              card
             </p>
           </div>
         </div>
@@ -253,8 +254,6 @@ exports[`Storyshots @components/organisms/CreditCardGrid default 1`] = `
     >
       <div
         className="c6"
-        data-test="creditCardTile"
-        data-test-id={9876}
       >
         <div
           className="c7"
@@ -287,7 +286,6 @@ exports[`Storyshots @components/organisms/CreditCardGrid default 1`] = `
           </div>
           <div
             className="c11"
-            data-test="expirationDate"
           >
             05/2019
           </div>
@@ -298,7 +296,6 @@ exports[`Storyshots @components/organisms/CreditCardGrid default 1`] = `
           </div>
           <div
             className="c11"
-            data-test="nameOnCard"
           >
             John Doe
           </div>
@@ -312,7 +309,7 @@ exports[`Storyshots @components/organisms/CreditCardGrid default 1`] = `
             <div>
               <div
                 className="c14"
-                data-test="removeCardButton"
+                data-cy="icon_button"
               >
                 <svg
                   height={22}
@@ -335,8 +332,6 @@ exports[`Storyshots @components/organisms/CreditCardGrid default 1`] = `
     >
       <div
         className="c6"
-        data-test="creditCardTile"
-        data-test-id={9876}
       >
         <div
           className="c7"
@@ -369,7 +364,6 @@ exports[`Storyshots @components/organisms/CreditCardGrid default 1`] = `
           </div>
           <div
             className="c11"
-            data-test="expirationDate"
           >
             05/2019
           </div>
@@ -380,7 +374,6 @@ exports[`Storyshots @components/organisms/CreditCardGrid default 1`] = `
           </div>
           <div
             className="c11"
-            data-test="nameOnCard"
           >
             John Doe
           </div>
@@ -394,7 +387,7 @@ exports[`Storyshots @components/organisms/CreditCardGrid default 1`] = `
             <div>
               <div
                 className="c14"
-                data-test="removeCardButton"
+                data-cy="icon_button"
               >
                 <svg
                   height={22}
@@ -417,8 +410,6 @@ exports[`Storyshots @components/organisms/CreditCardGrid default 1`] = `
     >
       <div
         className="c6"
-        data-test="creditCardTile"
-        data-test-id={9876}
       >
         <div
           className="c7"
@@ -451,7 +442,6 @@ exports[`Storyshots @components/organisms/CreditCardGrid default 1`] = `
           </div>
           <div
             className="c11"
-            data-test="expirationDate"
           >
             05/2019
           </div>
@@ -462,7 +452,6 @@ exports[`Storyshots @components/organisms/CreditCardGrid default 1`] = `
           </div>
           <div
             className="c11"
-            data-test="nameOnCard"
           >
             John Doe
           </div>
@@ -476,7 +465,7 @@ exports[`Storyshots @components/organisms/CreditCardGrid default 1`] = `
             <div>
               <div
                 className="c14"
-                data-test="removeCardButton"
+                data-cy="icon_button"
               >
                 <svg
                   height={22}

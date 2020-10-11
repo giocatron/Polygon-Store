@@ -1,7 +1,6 @@
 import { number } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import { IntlProvider } from "react-intl";
 import { MemoryRouter } from "react-router";
 
 import { CheckoutProgressBar } from ".";
@@ -44,10 +43,8 @@ storiesOf("@components/molecules/CheckoutProgressBar", module)
   .add("default", () => {
     const value = number(label, defaultValue, options);
     return (
-      <IntlProvider locale="en">
-        <MemoryRouter>
-          <CheckoutProgressBar steps={steps} activeStep={value} />
-        </MemoryRouter>
-      </IntlProvider>
+      <MemoryRouter>
+        <CheckoutProgressBar steps={steps} activeStep={value} />
+      </MemoryRouter>
     );
   });

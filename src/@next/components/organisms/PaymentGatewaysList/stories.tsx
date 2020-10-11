@@ -6,8 +6,6 @@ import { PaymentGatewaysList } from ".";
 import { paymentGateways } from "./fixtures";
 
 const processPayment = action("processPayment");
-const submitPayment = async () => action("submitPayment");
-const submitPaymentSuccess = action("submitPaymentSuccess");
 const selectPaymentGateway = action("selectPaymentGateway");
 const onError = action("onError");
 
@@ -17,8 +15,6 @@ storiesOf("@components/organisms/PaymentGatewaysList", module)
     <PaymentGatewaysList
       paymentGateways={paymentGateways}
       processPayment={processPayment}
-      submitPayment={submitPayment}
-      submitPaymentSuccess={submitPaymentSuccess}
       selectPaymentGateway={selectPaymentGateway}
       onError={onError}
     />

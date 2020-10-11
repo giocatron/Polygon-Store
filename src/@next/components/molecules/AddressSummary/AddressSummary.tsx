@@ -1,6 +1,4 @@
 import React from "react";
-import { FormattedMessage } from "react-intl";
-import { commonMessages } from "@temp/intl";
 
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -11,7 +9,7 @@ import { IProps } from "./types";
 const AddressSummary: React.FC<IProps> = ({ address, email }: IProps) => {
   if (address) {
     return (
-      <S.Wrapper data-test="addressTile">
+      <S.Wrapper>
         <strong>{`${address.firstName} ${address.lastName}`}</strong>
         <br />
         {address.companyName && (
@@ -27,27 +25,18 @@ const AddressSummary: React.FC<IProps> = ({ address, email }: IProps) => {
         <br />
         {address.phone && (
           <>
-            <FormattedMessage
-              {...commonMessages.phoneNumber}
-              values={{ phone: address.phone }}
-            />{" "}
-            <br />
+            Phone number: {address.phone} <br />
           </>
         )}
         {email && (
           <>
-            <FormattedMessage
-              {...commonMessages.showEmail}
-              values={{ email }}
-            />{" "}
-            <br /> <br />
+            Email: {email} <br />
           </>
         )}
       </S.Wrapper>
     );
-  }
-  if (email) {
-    return <S.Wrapper data-test="emailTile">{email}</S.Wrapper>;
+  } else if (email) {
+    return <S.Wrapper>{email}</S.Wrapper>;
   }
   return null;
 };

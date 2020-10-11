@@ -15,6 +15,8 @@ We use [atomic design](http://bradfrost.com/blog/post/atomic-web-design/) to org
 
 ### Pages
 
+_**Note:** In future pages might be moved to separate directory, due to their specific purpose._
+
 Pages use templates and connect them with outside of the world e.g. with SDK, without any styling (think login page).
 
 ### Hooks

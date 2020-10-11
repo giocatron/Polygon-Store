@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Route, Switch } from "react-router-dom";
 
-import { CartPage, CheckoutPage, PasswordReset, ThankYouPage } from "@pages";
 import { CheckoutLogin, NotFound } from "../../components";
 import UserAccount, * as accountPaths from "../../userAccount/routes";
 import { OrderDetails } from "../../userAccount/views";
@@ -12,6 +11,8 @@ import { CollectionPage } from "../../views/Collection";
 import { HomePage } from "../../views/Home";
 import { ProductPage } from "../../views/Product";
 import { SearchPage } from "../../views/Search";
+
+import { CartPage, CheckoutPage, PasswordReset, ThankYouPage } from "@pages";
 
 import * as paths from "./paths";
 

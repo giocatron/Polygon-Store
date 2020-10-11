@@ -1,4 +1,4 @@
-import { GetShop_shop_countries } from "@saleor/sdk/lib/queries/gqlTypes/GetShop";
+import { GetShop_shop_countries } from "@temp/@sdk/queries/gqlTypes/GetShop";
 import { IAddress, IAddressWithAddressType, IFormError } from "@types";
 
 export declare type Address = {
@@ -8,23 +8,14 @@ export declare type Address = {
 
 export interface IProps {
   userAddresses?: Address[] | null;
-  selectedUserShippingAddressId?: string;
-  selectedUserBillingAddressId?: string;
-  checkoutShippingAddress?: IAddress | null;
-  billingAsShippingAddress?: boolean;
-  checkoutBillingAddress?: IAddress | null;
+  selectedUserAddressId?: string;
+  checkoutAddress?: IAddress | null;
   email?: string;
   countries?: Array<GetShop_shop_countries | null>;
   userId?: string;
-  shippingFormRef?: React.RefObject<HTMLFormElement>;
-  shippingFormId?: string;
-  billingFormRef?: React.RefObject<HTMLFormElement>;
-  billingFormId?: string;
+  formRef?: React.RefObject<HTMLFormElement>;
+  formId?: string;
   newAddressFormId?: string;
-  shippingErrors?: IFormError[];
-  billingErrors?: IFormError[];
-  shippingAddressRequired: boolean;
+  errors?: IFormError[];
   setShippingAddress: (address?: IAddress, email?: string, id?: string) => void;
-  setBillingAddress: (address?: IAddress, email?: string, id?: string) => void;
-  setBillingAsShippingAddress: (billingAsShippingAddress: boolean) => void;
 }

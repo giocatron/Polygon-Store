@@ -230,7 +230,6 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
 >
   <div
     className="c1"
-    data-test="test"
     onClick={[Function]}
     open={true}
   >
@@ -253,7 +252,7 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
           </h4>
           <div
             className="c6"
-            data-test="closeOverlayButton"
+            data-cy="icon_button"
             onClick={[Function]}
           >
             <svg
@@ -281,7 +280,6 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
           <button
             className="c9"
             color="secondary"
-            data-test="cancelButton"
             onClick={[Function]}
             size="md"
             type="button"
@@ -291,7 +289,6 @@ exports[`Storyshots @components/organisms/Modal Modal Form 1`] = `
           <button
             className="c10"
             color="primary"
-            data-test="submitTestModalButton"
             disabled={false}
             form="form-id"
             size="sm"
@@ -521,7 +518,6 @@ exports[`Storyshots @components/organisms/Modal Modal Form disabled 1`] = `
 >
   <div
     className="c1"
-    data-test="test"
     onClick={[Function]}
     open={true}
   >
@@ -544,7 +540,7 @@ exports[`Storyshots @components/organisms/Modal Modal Form disabled 1`] = `
           </h4>
           <div
             className="c6"
-            data-test="closeOverlayButton"
+            data-cy="icon_button"
             onClick={[Function]}
           >
             <svg
@@ -572,7 +568,6 @@ exports[`Storyshots @components/organisms/Modal Modal Form disabled 1`] = `
           <button
             className="c9"
             color="primary"
-            data-test="submitTestModalButton"
             disabled={true}
             form="modal-submit"
             size="sm"
@@ -802,7 +797,6 @@ exports[`Storyshots @components/organisms/Modal Modal Info 1`] = `
 >
   <div
     className="c1"
-    data-test="test"
     onClick={[Function]}
     open={true}
   >
@@ -825,7 +819,7 @@ exports[`Storyshots @components/organisms/Modal Modal Info 1`] = `
           </h4>
           <div
             className="c6"
-            data-test="closeOverlayButton"
+            data-cy="icon_button"
             onClick={[Function]}
           >
             <svg
@@ -853,7 +847,6 @@ exports[`Storyshots @components/organisms/Modal Modal Info 1`] = `
           <button
             className="c9"
             color="primary"
-            data-test="submitTestModalButton"
             disabled={false}
             form="modal-submit"
             onClick={[Function]}

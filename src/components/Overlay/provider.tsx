@@ -1,5 +1,3 @@
-/* eslint-disable react/no-unused-state */
-
 import * as React from "react";
 import { RouteComponentProps, withRouter } from "react-router";
 import {
@@ -7,7 +5,7 @@ import {
   OverlayContext,
   OverlayContextInterface,
   OverlayTheme,
-  OverlayType,
+  OverlayType
 } from "./context";
 
 class Provider extends React.Component<
@@ -15,7 +13,6 @@ class Provider extends React.Component<
   OverlayContextInterface
 > {
   notificationCloseDelay = 2500;
-
   constructor(props) {
     super(props);
     this.state = {

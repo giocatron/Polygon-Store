@@ -1,10 +1,8 @@
 import "./scss/index.scss";
 
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 import ReactSVG from "react-svg";
-import { commonMessages } from "@temp/intl";
 
 import { baseUrl } from "../../app/routes";
 import NavItem, { INavItem } from "./NavItem";
@@ -91,7 +89,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
                 className="side-nav__menu-item-link"
                 onClick={hideOverlay}
               >
-                <FormattedMessage {...commonMessages.home} />
+                Home
               </Link>
             </li>
           </>

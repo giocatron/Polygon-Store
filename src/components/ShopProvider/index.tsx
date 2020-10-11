@@ -1,8 +1,9 @@
 import * as React from "react";
 
-import { useShopDetails } from "@saleor/sdk";
 import { maybe } from "../../core/utils";
 import { defaultContext, ShopContext } from "./context";
+
+import { useShopDetails } from "@sdk/react";
 
 const ShopProvider: React.FC = ({ children }) => {
   const { data } = useShopDetails();

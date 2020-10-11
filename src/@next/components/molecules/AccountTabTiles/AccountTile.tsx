@@ -1,8 +1,6 @@
 import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
 
-import { commonMessages } from "@temp/intl";
-import { useAccountUpdate, useAuth } from "@saleor/sdk";
+import { useAccountUpdate, useUserDetails } from "@sdk/react";
 
 import { Attribute, IconButton, Tile } from "@components/atoms";
 
@@ -12,8 +10,7 @@ import * as S from "./styles";
 export const AccountTile: React.FC = () => {
   const [isEditing, setIsEditing] = React.useState(false);
   const [setAccountUpdate, { data, error }] = useAccountUpdate();
-  const intl = useIntl();
-  const { user } = useAuth();
+  const { data: user } = useUserDetails();
 
   React.useEffect(() => {
     if (data && !error) {
@@ -24,15 +21,12 @@ export const AccountTile: React.FC = () => {
     <S.TileWrapper>
       <Tile>
         <S.Wrapper>
-          <S.Header>
-            <FormattedMessage defaultMessage="MY DATA" />
-          </S.Header>
+          <S.Header>MY DATA</S.Header>
           <S.Content>
             <S.HeaderSmall>
-              <FormattedMessage defaultMessage="Personal details" />
+              Personal details
               {!isEditing && (
                 <IconButton
-                  testingContext="editDetailsButton"
                   name="edit"
                   size={22}
                   onClick={() => setIsEditing(isEditing => !isEditing)}
@@ -53,16 +47,14 @@ export const AccountTile: React.FC = () => {
                 }}
               />
             ) : (
-              <S.ContentOneLine data-test="personalDetailsSection">
+              <S.ContentOneLine>
                 <Attribute
-                  description={intl.formatMessage(commonMessages.firstName)}
+                  description="First Name"
                   attributeValue={(user && user.firstName) || "-"}
-                  testingContext="firstNameText"
                 />
                 <Attribute
-                  description={intl.formatMessage(commonMessages.lastName)}
+                  description="Last Name"
                   attributeValue={(user && user.lastName) || "-"}
-                  testingContext="lastNameText"
                 />
               </S.ContentOneLine>
             )}

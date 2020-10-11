@@ -97,7 +97,6 @@ export const productVariantFragment = gql`
       attribute {
         id
         name
-        slug
       }
       values {
         id
@@ -132,7 +131,6 @@ export const productDetailsQuery = gql`
       }
       images {
         id
-        alt
         url
       }
       attributes {
@@ -144,8 +142,6 @@ export const productDetailsQuery = gql`
       seoDescription
       seoTitle
       isAvailable
-      isAvailableForPurchase
-      availableForPurchase
     }
   }
 `;

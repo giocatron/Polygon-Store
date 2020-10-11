@@ -120,14 +120,6 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
   background-color: transparent;
 }
 
-.c13:-webkit-autofill + label {
-  left: 0.5rem;
-  padding: 0 0.5rem;
-  background-color: transparent;
-  font-size: 0.75rem;
-  top: 0;
-}
-
 .c10 {
   margin-bottom: 1.875rem;
   position: relative;
@@ -378,50 +370,37 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
 >
   <div
     className="c1"
-    data-test="cartRow"
-    data-test-id="R4ND-0M-5KU"
   >
     <div
       className="c2"
     >
-      <a
-        href="/product/the-great-square-table/3/"
-        onClick={[Function]}
-      >
-        <img
-          alt="product image"
-          data-test="itemImage"
-          onError={[Function]}
-          src="test-file-stub"
-          srcSet="test-file-stub 1x"
-        />
-      </a>
+      <img
+        alt="product image"
+        data-cy="cartPageItemundefinedImage"
+        onError={[Function]}
+        src="test-file-stub"
+        srcSet="test-file-stub 1x"
+      />
     </div>
     <div
       className="c3"
     >
-      <a
-        href="/product/the-great-square-table/3/"
-        onClick={[Function]}
+      <p
+        className="c4"
+        data-cy="cartPageItemundefinedName"
       >
-        <p
-          className="c4"
-          data-test="itemName"
-        >
-          The Great Square Table
-        </p>
-      </a>
+        The Great Square Table
+      </p>
       <p
         className="c5"
       >
         <span
           className="c6"
         >
-          SKU
-          :
+          SKU:
            
           <span
-            data-test="itemSKU"
+            data-cy="cartPageItemundefinedSKU"
           >
             R4ND-0M-5KU
           </span>
@@ -429,14 +408,13 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
       </p>
       <div
         className="c7"
-        data-test="itemAttributes"
+        data-cy="cartPageItemundefinedAttributes"
       >
         <p
           className="c8"
         >
           <span
-            data-test="itemSingleAttribute"
-            data-test-id={0}
+            data-cy="cartPageItemundefinedSingleAttribute0"
           >
             <span
               className="c6"
@@ -452,8 +430,7 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
           className="c8"
         >
           <span
-            data-test="itemSingleAttribute"
-            data-test-id={1}
+            data-cy="cartPageItemundefinedSingleAttribute1"
           >
             <span
               className="c6"
@@ -469,8 +446,7 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
           className="c8"
         >
           <span
-            data-test="itemSingleAttribute"
-            data-test-id={2}
+            data-cy="cartPageItemundefinedSingleAttribute2"
           >
             <span
               className="c6"
@@ -486,8 +462,7 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
           className="c8"
         >
           <span
-            data-test="itemSingleAttribute"
-            data-test-id={3}
+            data-cy="cartPageItemundefinedSingleAttribute3"
           >
             <span
               className="c6"
@@ -516,6 +491,7 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
           >
             <input
               className="c13"
+              data-cy="cartPageItemundefinedQuantityInput"
               disabled={false}
               name="quantity"
               onBlur={[Function]}
@@ -534,10 +510,9 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
           >
             <div
               className="c16"
-              data-test="quantityControls"
             >
               <div
-                data-test="subtractButton"
+                data-cy="cartPageItemundefinedQuantityBtnSubtract"
                 onClick={[Function]}
               >
                 <svg
@@ -552,7 +527,7 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
                 </svg>
               </div>
               <div
-                data-test="increaseButton"
+                data-cy="cartPageItemundefinedQuantityBtnAdd"
                 onClick={[Function]}
               >
                 <svg
@@ -579,8 +554,7 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
     >
       <div
         className="c19"
-        data-test="removeButton"
-        data-test-id="R4ND-0M-5KU"
+        data-cy="cartPageItemundefinedBtnRemove"
         onClick={[Function]}
       >
         <svg
@@ -604,13 +578,10 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
         <span
           className="c6"
         >
-          Total Price
-          :
+          Total Price:
         </span>
       </p>
-      <p
-        data-test="totalPrice"
-      >
+      <p>
         150$
       </p>
     </div>
@@ -623,13 +594,10 @@ exports[`Storyshots @components/organisms/CartRow default 1`] = `
         <span
           className="c6"
         >
-          Price
-          :
+          Price:
         </span>
       </p>
-      <p
-        data-test="unitPrice"
-      >
+      <p>
         50$
       </p>
     </div>

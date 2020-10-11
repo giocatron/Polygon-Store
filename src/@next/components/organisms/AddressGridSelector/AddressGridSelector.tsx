@@ -1,10 +1,8 @@
 import { Formik } from "formik";
 import React, { useState } from "react";
-import { useIntl } from "react-intl";
 
 import { AddNewTile, ErrorMessage, TileGrid } from "@components/atoms";
 import { AddressTileOption } from "@components/molecules";
-import { checkoutMessages } from "@temp/intl";
 
 import { AddressFormModal } from "../AddressFormModal";
 
@@ -24,16 +22,14 @@ const AddressGridSelector: React.FC<IProps> = ({
   formRef,
   addNewModalTarget,
   newAddressFormId,
-  testingContext,
 }: IProps) => {
   const [displayNewModal, setDisplayNewModal] = useState(false);
-  const intl = useIntl();
 
   const addNewTile = (
     <AddNewTile
-      data-test={`${testingContext}AddressTileAddNew`}
+      data-cy="addressTileAddNew"
       key="newTile"
-      type={intl.formatMessage({ defaultMessage: "address" })}
+      type="address"
       onClick={() => setDisplayNewModal(true)}
     />
   );
@@ -44,7 +40,7 @@ const AddressGridSelector: React.FC<IProps> = ({
         initialValues={{
           addressTileOption: selectedAddressId,
         }}
-        enableReinitialize
+        enableReinitialize={true}
         onSubmit={(values, { setSubmitting }) => {
           if (onSelect) {
             const address = addresses.find(
@@ -71,9 +67,7 @@ const AddressGridSelector: React.FC<IProps> = ({
                   (elements, { id, address }, index) => {
                     elements.push(
                       <AddressTileOption
-                        testingContext={testingContext}
-                        data-test={`${testingContext}AddressTileOption`}
-                        data-test-id={index}
+                        data-cy={`addressTileOption${index}`}
                         key={`addressTile-${id}`}
                         id={id}
                         inputName="addressTileOption"
@@ -100,8 +94,8 @@ const AddressGridSelector: React.FC<IProps> = ({
           hideModal={() => {
             setDisplayNewModal(false);
           }}
-          submitBtnText="Add"
-          title={intl.formatMessage(checkoutMessages.addNewAddress)}
+          submitBtnText={"Add"}
+          title={"Add new address"}
           countriesOptions={countriesOptions}
           formId={newAddressFormId}
           userId={userId}

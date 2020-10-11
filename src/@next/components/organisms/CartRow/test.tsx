@@ -1,10 +1,8 @@
-import { mount } from "enzyme";
+import { mount, shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
-import { IntlProvider } from "react-intl";
-import { MemoryRouter } from "react-router";
 
-import { Icon } from "@components/atoms";
+import { Icon, IconButton } from "@components/atoms";
 
 import { CartRow } from ".";
 import { DEFAULT_PROPS } from "./fixtures";
@@ -13,16 +11,12 @@ describe("<CartRow />", () => {
   it("exists", () => {
     const onRemoveMock = jest.fn();
     const onQuantityChangeMock = jest.fn();
-    const wrapper = mount(
-      <IntlProvider locale="en">
-        <MemoryRouter>
-          <CartRow
-            {...DEFAULT_PROPS}
-            onRemove={onRemoveMock}
-            onQuantityChange={onQuantityChangeMock}
-          />
-        </MemoryRouter>
-      </IntlProvider>
+    const wrapper = shallow(
+      <CartRow
+        {...DEFAULT_PROPS}
+        onRemove={onRemoveMock}
+        onQuantityChange={onQuantityChangeMock}
+      />
     );
 
     expect(wrapper.exists()).toEqual(true);
@@ -31,38 +25,31 @@ describe("<CartRow />", () => {
   it("should call mock when clicking on trash icon", () => {
     const onRemoveMock = jest.fn();
     const onQuantityChangeMock = jest.fn();
-    const wrapper = mount(
-      <IntlProvider locale="en">
-        <MemoryRouter>
-          <CartRow
-            {...DEFAULT_PROPS}
-            onRemove={onRemoveMock}
-            onQuantityChange={onQuantityChangeMock}
-          />
-        </MemoryRouter>
-      </IntlProvider>
+    const wrapper = shallow(
+      <CartRow
+        {...DEFAULT_PROPS}
+        onRemove={onRemoveMock}
+        onQuantityChange={onQuantityChangeMock}
+      />
     );
+
     wrapper
-      .find(Icon)
+      .find(IconButton)
       .findWhere(wrapper => wrapper.props().name === "trash")
       .simulate("click");
 
     expect(onRemoveMock).toHaveBeenCalled();
   });
 
-  it("should call mock when clicking on subtract quantity icon", () => {
+  it("should call mock when clicking on substract quantity icon", () => {
     const onRemoveMock = jest.fn();
     const onQuantityChangeMock = jest.fn();
     const wrapper = mount(
-      <IntlProvider locale="en">
-        <MemoryRouter>
-          <CartRow
-            {...DEFAULT_PROPS}
-            onRemove={onRemoveMock}
-            onQuantityChange={onQuantityChangeMock}
-          />
-        </MemoryRouter>
-      </IntlProvider>
+      <CartRow
+        {...DEFAULT_PROPS}
+        onRemove={onRemoveMock}
+        onQuantityChange={onQuantityChangeMock}
+      />
     );
 
     wrapper
@@ -79,15 +66,11 @@ describe("<CartRow />", () => {
     const onRemoveMock = jest.fn();
     const onQuantityChangeMock = jest.fn();
     const wrapper = mount(
-      <IntlProvider locale="en">
-        <MemoryRouter>
-          <CartRow
-            {...DEFAULT_PROPS}
-            onRemove={onRemoveMock}
-            onQuantityChange={onQuantityChangeMock}
-          />
-        </MemoryRouter>
-      </IntlProvider>
+      <CartRow
+        {...DEFAULT_PROPS}
+        onRemove={onRemoveMock}
+        onQuantityChange={onQuantityChangeMock}
+      />
     );
 
     wrapper
@@ -104,17 +87,13 @@ describe("<CartRow />", () => {
     const onRemoveMock = jest.fn();
     const onQuantityChangeMock = jest.fn();
     const wrapper = mount(
-      <IntlProvider locale="en">
-        <MemoryRouter>
-          <CartRow
-            {...DEFAULT_PROPS}
-            maxQuantity={3}
-            quantity={3}
-            onRemove={onRemoveMock}
-            onQuantityChange={onQuantityChangeMock}
-          />
-        </MemoryRouter>
-      </IntlProvider>
+      <CartRow
+        {...DEFAULT_PROPS}
+        maxQuantity={3}
+        quantity={3}
+        onRemove={onRemoveMock}
+        onQuantityChange={onQuantityChangeMock}
+      />
     );
 
     wrapper

@@ -5,10 +5,11 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { RouteComponentProps } from "react-router";
+import { RouteComponentProps, useHistory } from "react-router";
 
 import { CheckoutShipping } from "@components/organisms";
-import { useCheckout } from "@saleor/sdk";
+import { useCheckout } from "@sdk/react";
+import { CHECKOUT_STEPS } from "@temp/core/config";
 import { IFormError } from "@types";
 
 export interface ICheckoutShippingSubpageHandles {
@@ -17,25 +18,27 @@ export interface ICheckoutShippingSubpageHandles {
 
 interface IProps extends RouteComponentProps<any> {
   changeSubmitProgress: (submitInProgress: boolean) => void;
-  onSubmitSuccess: () => void;
 }
 
 const CheckoutShippingSubpageWithRef: RefForwardingComponent<
   ICheckoutShippingSubpageHandles,
   IProps
-> = ({ changeSubmitProgress, onSubmitSuccess, ...props }: IProps, ref) => {
+> = ({ changeSubmitProgress, ...props }: IProps, ref) => {
   const checkoutShippingFormId = "shipping-form";
   const checkoutShippingFormRef = useRef<HTMLFormElement>(null);
 
   const [errors, setErrors] = useState<IFormError[]>([]);
 
+  const history = useHistory();
   const {
     checkout,
     availableShippingMethods,
     setShippingMethod,
   } = useCheckout();
 
-  const shippingMethods = availableShippingMethods || [];
+  const shippingMethods = availableShippingMethods
+    ? availableShippingMethods
+    : [];
 
   useImperativeHandle(ref, () => ({
     submitShipping: () => {
@@ -54,7 +57,7 @@ const CheckoutShippingSubpageWithRef: RefForwardingComponent<
       setErrors(errors);
     } else {
       setErrors([]);
-      onSubmitSuccess();
+      history.push(CHECKOUT_STEPS[1].nextStepLink);
     }
   };
 

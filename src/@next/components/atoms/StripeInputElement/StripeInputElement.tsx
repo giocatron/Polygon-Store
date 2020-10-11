@@ -129,8 +129,6 @@ const StripeInputElement: React.FC<IProps> = ({
             options={OPTIONS}
           />
         );
-      default:
-        throw new Error("Unsupported stripe element");
     }
   };
 

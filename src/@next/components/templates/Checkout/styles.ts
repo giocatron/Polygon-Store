@@ -20,7 +20,6 @@ export const Wrapper = styled.div`
   grid-template-areas:
     "navigation cartSummary"
     "checkout cartSummary"
-    "paymentGateways cartSummary"
     "button cartSummary";
 
   ${media.mediumScreen`
@@ -28,7 +27,6 @@ export const Wrapper = styled.div`
     grid-template-areas:
       "navigation"
       "checkout"
-      "paymentGateways"
       "button";
   `}
 `;
@@ -42,11 +40,7 @@ export const Navigation = styled.div`
 `;
 export const Checkout = styled.div`
   grid-area: checkout;
-  padding: 3rem 0 0 0;
-`;
-export const PaymentGateways = styled.div<{ hide: boolean }>`
-  ${props => props.hide && "display: none;"}
-  grid-area: paymentGateways;
+  padding: 3rem 0;
 `;
 export const CartSummary = styled.div`
   grid-area: cartSummary;
@@ -58,5 +52,4 @@ export const CartSummary = styled.div`
 `;
 export const Button = styled.div`
   grid-area: button;
-  margin: 3rem 0 0 0;
 `;

@@ -2,21 +2,21 @@ export interface ICardData {
   /**
    * Card brand.
    */
-  brand: string;
+  brand?: string;
   /**
-   * First 4 digits of the card number.
+   * The host name of the domain.
    */
-  firstDigits: string | null;
+  firstDigits?: string;
   /**
    * Last 4 digits of the card number.
    */
-  lastDigits: string;
+  lastDigits?: string;
   /**
    * Two-digit number representing the card’s expiration month.
    */
-  expMonth: number | null;
+  expMonth?: number;
   /**
    * Four-digit number representing the card’s expiration year.
    */
-  expYear: number | null;
+  expYear?: number;
 }

@@ -1,9 +1,7 @@
 import React from "react";
-import { FormattedMessage } from "react-intl";
 
 import { Button } from "@components/atoms";
 import { Container } from "@components/templates";
-import { checkoutMessages } from "@temp/intl";
 
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -17,37 +15,26 @@ const ThankYou: React.FC<IProps> = ({
   orderDetails,
 }: IProps) => {
   return (
-    <Container data-test="thankYouView">
+    <Container>
       <S.Wrapper>
         <S.ThankYouHeader>
-          <FormattedMessage defaultMessage="Thank you" />
+          Thank you
           <br />
-          <span>
-            <FormattedMessage defaultMessage="for your order!" />
-          </span>
+          <span>for your order!</span>
         </S.ThankYouHeader>
         <S.Paragraph>
-          <FormattedMessage defaultMessage="Your order number is" />{" "}
-          <span>{orderNumber}</span>
+          Your order number is <span>{orderNumber}</span>
         </S.Paragraph>
         <S.Paragraph>
-          <FormattedMessage defaultMessage="We’ve emailed you an order confirmation, and we’ll notify you when the order has been shipped." />
+          We’ve emailed you an order confirmation, and we’ll notify you the when
+          order has been shipped.
         </S.Paragraph>
         <S.Buttons>
-          <Button
-            testingContext="continueShoppingButton"
-            onClick={continueShopping}
-            color="secondary"
-            fullWidth
-          >
-            <FormattedMessage {...checkoutMessages.continueShopping} />
+          <Button onClick={continueShopping} color="secondary" fullWidth={true}>
+            CONTINUE SHOPPING
           </Button>
-          <Button
-            testingContext="gotoOrderDetailsButton"
-            onClick={orderDetails}
-            fullWidth
-          >
-            <FormattedMessage defaultMessage="ORDER DETAILS" />
+          <Button onClick={orderDetails} fullWidth={true}>
+            ORDER DETAILS
           </Button>
         </S.Buttons>
       </S.Wrapper>

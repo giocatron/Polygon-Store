@@ -14,7 +14,7 @@ const distDir = path.join(__dirname, "./dist");
 module.exports = (env, argv) => {
   const devMode = argv.mode !== "production";
   const sw = !!argv["service-worker"];
-  const paths = { distDir, sourceDir };
+  const paths = { sourceDir, distDir };
 
   const base = baseConfig(paths);
   const worker = workerConfig(paths);

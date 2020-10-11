@@ -4,36 +4,41 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const webpack = require("webpack");
-const path = require("path");
 
 if (!process.env.API_URI) {
   throw new Error("Environment variable API_URI not set");
 }
-const STATIC_URL = process.env.STATIC_URL || "/";
 
 module.exports = ({ sourceDir, distDir }) => ({
-  devtool: "source-map",
+  resolve: {
+    alias: {
+      "react-dom": "@hot-loader/react-dom",
+    },
+    extensions: [".ts", ".tsx", ".js", ".jsx"],
+    plugins: [
+      new TsconfigPathsPlugin({
+        configFile: "./tsconfig.json",
+      }),
+    ],
+  },
   entry: {
     app: `${sourceDir}/index.tsx`,
   },
+  output: {
+    path: distDir,
+    publicPath: "/",
+  },
+  devtool: "source-map",
   module: {
     rules: [
       {
-        exclude: /node_modules/,
+        test: /\.tsx?$/,
         loader: "ts-loader",
+        exclude: /node_modules/,
         options: {
           experimentalWatchApi: true,
           transpileOnly: true,
         },
-        test: /\.tsx?$/,
-      },
-      {
-        exclude: /node_modules/,
-        loader: "babel-loader",
-        options: {
-          configFile: "./babel.config.js",
-        },
-        test: /\.(jsx?|tsx?)$/,
       },
       {
         test: /\.(woff2?|ttf|eot)$/,
@@ -62,9 +67,6 @@ module.exports = ({ sourceDir, distDir }) => ({
           {
             loader: "image-webpack-loader",
             options: {
-              gifsicle: {
-                enabled: false,
-              },
               mozjpeg: {
                 progressive: true,
                 quality: 85,
@@ -73,67 +75,47 @@ module.exports = ({ sourceDir, distDir }) => ({
                 quality: "65-90",
                 speed: 4,
               },
+              gifsicle: {
+                enabled: false,
+              },
             },
           },
         ],
       },
     ],
   },
-  node: {
-    fs: "empty",
-    module: "empty",
-  },
-  output: {
-    path: distDir,
-    publicPath: STATIC_URL,
-  },
   plugins: [
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: distDir,
     }),
     new HtmlWebpackPlugin({
-      API_URI: process.env.API_URI,
       filename: `${distDir}/index.html`,
       template: `${sourceDir}/index.html`,
+      API_URI: process.env.API_URI,
     }),
     new ForkTsCheckerWebpackPlugin({
-      eslint: true,
+      tslint: true,
       exclude: "node_modules",
     }),
     // PWA plugins
     new WebappWebpackPlugin({
-      favicons: {
-        appDescription: "Storefront for the Saleor e-commerce platform",
-        appName: "Saleor",
-        background: "#ddd",
-        developerURL: null, // prevent retrieving from the nearest package.json
-        display: "standalone",
-        theme_color: "#333",
-      },
       logo: `${sourceDir}/images/favicon.png`,
       prefix: "images/favicons/",
+      favicons: {
+        appName: "Saleor",
+        appDescription: "Storefront for the Saleor e-commerce platform",
+        display: "standalone",
+        developerURL: null, // prevent retrieving from the nearest package.json
+        background: "#ddd",
+        theme_color: "#333",
+      },
     }),
     new webpack.EnvironmentPlugin({
       API_URI: "http://localhost:8000/graphql/",
-      DEMO_MODE: false,
-      GTM_ID: undefined,
-      SENTRY_APM: "0",
-      SENTRY_DSN: null,
     }),
   ],
-  resolve: {
-    alias: {
-      // Explicitely set react's path here because npm-link doesn't do well
-      // when it comes to peer dependencies, and we need to somehow develop
-      // @saleor/sdk package
-      react: path.resolve("./node_modules/react"),
-      "react-dom": "@hot-loader/react-dom",
-    },
-    extensions: [".ts", ".tsx", ".js", ".jsx"],
-    plugins: [
-      new TsconfigPathsPlugin({
-        configFile: "./tsconfig.json",
-      }),
-    ],
+  node: {
+    fs: "empty",
+    module: "empty",
   },
 });

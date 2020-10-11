@@ -22,30 +22,20 @@ export const CreditCardTile: React.FC<IProps> = ({
   const content = (
     <>
       <S.BoldTitle>Expires on</S.BoldTitle>
-      <S.TextContent data-test="expirationDate">{expirationDate}</S.TextContent>
+      <S.TextContent>{expirationDate}</S.TextContent>
       <S.BoldTitle>Name on card</S.BoldTitle>
-      <S.TextContent data-test="nameOnCard">{nameOnCard}</S.TextContent>
+      <S.TextContent>{nameOnCard}</S.TextContent>
     </>
   );
   const footer = (
     <S.FooterContent>
       <div>
-        <IconButton
-          name="trash"
-          onClick={onRemove}
-          size={22}
-          testingContext="removeCardButton"
-        />
+        <IconButton name="trash" onClick={onRemove} size={22} />
       </div>
     </S.FooterContent>
   );
   return (
-    <Tile
-      header={header}
-      footer={footer}
-      data-test="creditCardTile"
-      data-test-id={last4Digits}
-    >
+    <Tile header={header} footer={footer}>
       {content}
     </Tile>
   );

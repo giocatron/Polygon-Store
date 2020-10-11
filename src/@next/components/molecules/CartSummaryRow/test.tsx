@@ -1,7 +1,6 @@
 import { mount, shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
-import { IntlProvider } from "react-intl";
 
 import { CachedImage } from "..";
 
@@ -40,11 +39,7 @@ describe("<CartSummaryRow />", () => {
   });
 
   it("should display product quantity", () => {
-    const wrapper = mount(
-      <IntlProvider locale="en">
-        <CartSummaryRow {...DEFAULT_PROPS} />
-      </IntlProvider>
-    );
+    const wrapper = shallow(<CartSummaryRow {...DEFAULT_PROPS} />);
 
     expect(wrapper.text()).toContain(`Quantity: ${DEFAULT_PROPS.quantity}`);
   });

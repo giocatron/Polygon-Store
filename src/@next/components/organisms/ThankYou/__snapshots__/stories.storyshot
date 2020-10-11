@@ -183,7 +183,6 @@ exports[`Storyshots @components/organisms/ThankYou default 1`] = `
 >
   <div
     className="c1"
-    data-test="thankYouView"
   >
     <div
       className="c2"
@@ -200,8 +199,7 @@ exports[`Storyshots @components/organisms/ThankYou default 1`] = `
       <p
         className="c4"
       >
-        Your order number is
-         
+        Your order number is 
         <span>
           #341414
         </span>
@@ -209,7 +207,7 @@ exports[`Storyshots @components/organisms/ThankYou default 1`] = `
       <p
         className="c4"
       >
-        We’ve emailed you an order confirmation, and we’ll notify you when the order has been shipped.
+        We’ve emailed you an order confirmation, and we’ll notify you the when order has been shipped.
       </p>
       <div
         className="c5"
@@ -217,7 +215,6 @@ exports[`Storyshots @components/organisms/ThankYou default 1`] = `
         <button
           className="c6"
           color="secondary"
-          data-test="continueShoppingButton"
           onClick={[Function]}
           size="md"
         >
@@ -231,7 +228,6 @@ exports[`Storyshots @components/organisms/ThankYou default 1`] = `
         <button
           className="c8"
           color="primary"
-          data-test="gotoOrderDetailsButton"
           onClick={[Function]}
           size="md"
         >

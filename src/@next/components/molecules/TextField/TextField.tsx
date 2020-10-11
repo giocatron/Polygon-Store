@@ -1,8 +1,9 @@
 import React from "react";
 
-import { ErrorMessage, Input } from "@components/atoms";
 import * as S from "./styles";
 import { IProps } from "./types";
+
+import { ErrorMessage, Input } from "@components/atoms";
 
 export const TextField: React.FC<IProps> = ({
   errors,

@@ -38,7 +38,7 @@ export const AddressForm: React.FC<IProps> = ({
   return (
     <Formik
       initialValues={addressWithPickedFields}
-      enableReinitialize
+      enableReinitialize={true}
       onSubmit={(values, { setSubmitting }) => {
         if (handleSubmit) {
           handleSubmit(values);

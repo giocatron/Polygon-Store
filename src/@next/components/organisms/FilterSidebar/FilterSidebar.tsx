@@ -1,12 +1,10 @@
 import React from "react";
-import { FormattedMessage } from "react-intl";
 
 import { IconButton } from "@components/atoms";
 import { AttributeValuesChecklist } from "@components/molecules";
 import { useHandlerWhenClickedOutside } from "@hooks";
-import { commonMessages } from "@temp/intl";
 
-import { Overlay } from "..";
+import { Overlay } from "../";
 import { IFilters, ISingleFilterAttribute } from "../../../types";
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -19,10 +17,12 @@ const checkIfAttributeIsChecked = (
   if (filters!.attributes && filters.attributes.hasOwnProperty(slug)) {
     if (filters.attributes[slug].find(filter => filter === value.slug)) {
       return true;
+    } else {
+      return false;
     }
+  } else {
     return false;
   }
-  return false;
 };
 
 export const FilterSidebar: React.FC<IProps> = ({
@@ -45,18 +45,10 @@ export const FilterSidebar: React.FC<IProps> = ({
       transparent
       target={target}
     >
-      <S.Wrapper ref={setElementRef()} data-test="filterSidebar">
+      <S.Wrapper ref={setElementRef()} data-cy="filter-sidebar">
         <S.Header>
-          <span>
-            <FormattedMessage {...commonMessages.filterHeader} />
-          </span>
-          <IconButton
-            testingContext="hideFilters"
-            onClick={hide}
-            name="x"
-            size={18}
-            color="000"
-          />
+          <span>FILTERS</span>
+          <IconButton onClick={hide} name="x" size={18} color="000" />
         </S.Header>
         {attributes.map(({ id, name, slug, values }) => {
           return (

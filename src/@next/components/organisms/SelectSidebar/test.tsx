@@ -14,7 +14,7 @@ describe("<SelectSidebar />", () => {
       <SelectSidebar
         title="PLEASE SELECT SIZE"
         {...DEFAULT_PROPS}
-        show
+        show={true}
         hide={hide}
         onSelect={onSelect}
       />
@@ -28,7 +28,7 @@ describe("<SelectSidebar />", () => {
       <SelectSidebar
         title="PLEASE SELECT SIZE"
         {...DEFAULT_PROPS}
-        show
+        show={true}
         hide={hide}
         onSelect={onSelect}
       />

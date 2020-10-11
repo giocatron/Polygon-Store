@@ -1,6 +1,4 @@
 import React from "react";
-import { FormattedMessage } from "react-intl";
-import { commonMessages } from "@temp/intl";
 
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -16,29 +14,21 @@ const CartFooter: React.FC<IProps> = ({
 }: IProps) => {
   return (
     <S.Wrapper showShipping={!!shippingPrice} showDiscount={!!discountPrice}>
-      <S.SubtotalText>
-        <FormattedMessage {...commonMessages.subtotal} />
-      </S.SubtotalText>
+      <S.SubtotalText>Subtotal</S.SubtotalText>
       <S.SubtotalPrice>{subtotalPrice}</S.SubtotalPrice>
       {shippingPrice && (
         <>
-          <S.ShippingText>
-            <FormattedMessage {...commonMessages.shipping} />
-          </S.ShippingText>
+          <S.ShippingText>Shipping</S.ShippingText>
           <S.ShippingPrice>{shippingPrice}</S.ShippingPrice>
         </>
       )}
       {discountPrice && (
         <>
-          <S.DiscountText>
-            <FormattedMessage {...commonMessages.promoCode} />
-          </S.DiscountText>
+          <S.DiscountText>Promo Code</S.DiscountText>
           <S.DiscountPrice>{discountPrice}</S.DiscountPrice>
         </>
       )}
-      <S.TotalText>
-        <FormattedMessage {...commonMessages.total} />
-      </S.TotalText>
+      <S.TotalText>Total</S.TotalText>
       <S.TotalPrice>{totalPrice}</S.TotalPrice>
     </S.Wrapper>
   );

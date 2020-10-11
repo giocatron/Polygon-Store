@@ -1,9 +1,7 @@
 import { Formik } from "formik";
 import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
 
 import { Button, Chip, ErrorMessage, Input } from "@components/atoms";
-import { commonMessages } from "@temp/intl";
 import * as S from "./styles";
 import { IProps } from "./types";
 
@@ -18,7 +16,6 @@ export const DiscountForm: React.FC<IProps> = ({
 
   const [inputCode, setInputCode] = React.useState("");
   const [tempPromoCode, setTempPromoCode] = React.useState(promoCode);
-  const intl = useIntl();
 
   const handleApplyBtnClick = (newInputCode: string) => {
     setTempPromoCode(newInputCode);
@@ -37,7 +34,7 @@ export const DiscountForm: React.FC<IProps> = ({
         inputCode,
         tempPromoCode,
       }}
-      enableReinitialize
+      enableReinitialize={true}
       onSubmit={(values, { setSubmitting }) => {
         if (handleSubmit) {
           handleSubmit({
@@ -58,30 +55,26 @@ export const DiscountForm: React.FC<IProps> = ({
         const hasErrors = !!(values.errors && values.errors.length);
 
         return (
-          <S.DiscountForm
-            id={formId}
-            ref={formRef}
-            onSubmit={handleSubmit}
-            data-test="discountForm"
-          >
+          <S.DiscountForm id={formId} ref={formRef} onSubmit={handleSubmit}>
             <S.Input>
               <S.InputWithButton>
                 <S.InputWrapper>
                   <Input
+                    data-cy="checkoutPaymentPromoCodeInput"
                     error={hasErrors}
                     name="inputCode"
                     value={values.inputCode}
-                    label={intl.formatMessage(commonMessages.promoCode)}
+                    label="Promo Code"
                     onChange={handleChange}
                   />
                 </S.InputWrapper>
                 <S.ButtonWrapper>
                   <Button
                     type="button"
-                    testingContext="applyPromoCodeButton"
+                    data-cy="checkoutPaymentPromoCodeBtn"
                     onClick={() => handleApplyBtnClick(values.inputCode)}
                   >
-                    <FormattedMessage defaultMessage="Apply" />
+                    Apply
                   </Button>
                 </S.ButtonWrapper>
               </S.InputWithButton>
@@ -89,12 +82,10 @@ export const DiscountForm: React.FC<IProps> = ({
             </S.Input>
             {values.tempPromoCode && (
               <>
-                <span>
-                  <FormattedMessage {...commonMessages.promoCode} />:
-                </span>
+                <span>Promo code:</span>
                 <S.ChipsWrapper>
                   <Chip onClose={() => handleRemoveBtnClick(values.inputCode)}>
-                    <span data-test="promoCodeChip">
+                    <span data-cy="checkoutPaymentPromoCodeChip">
                       {values.tempPromoCode}
                     </span>
                   </Chip>

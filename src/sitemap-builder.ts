@@ -1,11 +1,10 @@
-/* eslint-disable no-console */
 import { existsSync } from "fs";
 import path from "path";
 import {
   getCategories,
   getCollections,
   getProducts,
-  SitemapGenerator,
+  SitemapGenerator
 } from "./sitemap";
 
 const distDir = path.join(__dirname, "../dist");

@@ -8,16 +8,12 @@ import { paymentGateways } from "./fixtures";
 describe("<PaymentGatewaysList />", () => {
   it("renders payment gateways", () => {
     const processPayment = jest.fn();
-    const submitPayment = jest.fn();
-    const submitPaymentSuccess = jest.fn();
     const selectPaymentGateway = jest.fn();
     const onError = jest.fn();
     const wrapper = mount(
       <PaymentGatewaysList
         paymentGateways={paymentGateways}
         processPayment={processPayment}
-        submitPayment={submitPayment}
-        submitPaymentSuccess={submitPaymentSuccess}
         selectPaymentGateway={selectPaymentGateway}
         onError={onError}
       />
@@ -30,16 +26,12 @@ describe("<PaymentGatewaysList />", () => {
 
   it("simulates select payment gateway", () => {
     const processPayment = jest.fn();
-    const submitPayment = jest.fn();
-    const submitPaymentSuccess = jest.fn();
     const selectPaymentGateway = jest.fn();
     const onError = jest.fn();
     const wrapper = mount(
       <PaymentGatewaysList
         paymentGateways={paymentGateways}
         processPayment={processPayment}
-        submitPayment={submitPayment}
-        submitPaymentSuccess={submitPaymentSuccess}
         selectPaymentGateway={selectPaymentGateway}
         onError={onError}
       />

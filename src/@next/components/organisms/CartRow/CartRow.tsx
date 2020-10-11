@@ -1,26 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { FormattedMessage, useIntl } from "react-intl";
-import { Link } from "react-router-dom";
 
 import { Icon, IconButton } from "@components/atoms";
 import { CachedImage, TextField } from "@components/molecules";
-import { commonMessages } from "@temp/intl";
-
-import { generateProductUrl } from "../../../../core/utils";
 
 import * as S from "./styles";
 import { IProps } from "./types";
 
 const QuantityButtons = (
   add: () => void,
-  subtract: () => void,
+  substract: () => void,
   index?: number
 ) => (
-  <S.QuantityButtons data-test="quantityControls">
-    <div onClick={subtract} data-test="subtractButton">
+  <S.QuantityButtons>
+    <div
+      onClick={substract}
+      data-cy={`cartPageItem${index}QuantityBtnSubtract`}
+    >
       <Icon size={16} name="horizontal_line" />
     </div>
-    <div onClick={add} data-test="increaseButton">
+    <div onClick={add} data-cy={`cartPageItem${index}QuantityBtnAdd`}>
       <Icon size={16} name="plus" />
     </div>
   </S.QuantityButtons>
@@ -41,11 +39,9 @@ export const CartRow: React.FC<IProps> = ({
   thumbnail,
   attributes = [],
   onRemove,
-  id,
 }: IProps) => {
   const [tempQuantity, setTempQuantity] = useState<string>(quantity.toString());
   const [isTooMuch, setIsTooMuch] = useState(false);
-  const intl = useIntl();
 
   const handleBlurQuantityInput = () => {
     let newQuantity = parseInt(tempQuantity, 10);
@@ -76,7 +72,7 @@ export const CartRow: React.FC<IProps> = ({
     () => quantity < maxQuantity && onQuantityChange(quantity + 1),
     [quantity]
   );
-  const subtract = React.useCallback(
+  const substract = React.useCallback(
     () => quantity > 1 && onQuantityChange(quantity - 1),
     [quantity]
   );
@@ -91,36 +87,29 @@ export const CartRow: React.FC<IProps> = ({
   const quantityErrors = isTooMuch
     ? [
         {
-          message: intl.formatMessage(commonMessages.maxQtyIs, { maxQuantity }),
+          message: `Maximum quantity is ${maxQuantity}`,
         },
       ]
     : undefined;
 
-  const productUrl = generateProductUrl(id, name);
-
   return (
-    <S.Wrapper data-test="cartRow" data-test-id={sku}>
+    <S.Wrapper>
       <S.Photo>
-        <Link to={productUrl}>
-          <CachedImage data-test="itemImage" {...thumbnail} />
-        </Link>
+        <CachedImage data-cy={`cartPageItem${index}Image`} {...thumbnail} />
       </S.Photo>
       <S.Description>
-        <Link to={productUrl}>
-          <S.Name data-test="itemName">{name}</S.Name>
-        </Link>
+        <S.Name data-cy={`cartPageItem${index}Name`}>{name}</S.Name>
         <S.Sku>
           <S.LightFont>
-            <FormattedMessage {...commonMessages.sku} />:{" "}
-            <span data-test="itemSKU">{sku || "-"}</span>
+            SKU:{" "}
+            <span data-cy={`cartPageItem${index}SKU`}>{sku ? sku : "-"}</span>
           </S.LightFont>
         </S.Sku>
-        <S.Attributes data-test="itemAttributes">
+        <S.Attributes data-cy={`cartPageItem${index}Attributes`}>
           {attributes.map(({ attribute, values }, attributeIndex) => (
             <S.SingleAttribute key={attribute.id}>
               <span
-                data-test="itemSingleAttribute"
-                data-test-id={attributeIndex}
+                data-cy={`cartPageItem${index}SingleAttribute${attributeIndex}`}
               >
                 <S.LightFont>{attribute.name}:</S.LightFont>{" "}
                 {values.map(value => value.name).join(", ")}
@@ -131,19 +120,19 @@ export const CartRow: React.FC<IProps> = ({
       </S.Description>
       <S.Quantity>
         <TextField
+          data-cy={`cartPageItem${index}QuantityInput`}
           name="quantity"
-          label={intl.formatMessage(commonMessages.qty)}
+          label="Quantity"
           value={tempQuantity}
           onBlur={handleBlurQuantityInput}
           onChange={handleQuantityChange}
-          contentRight={QuantityButtons(add, subtract, index)}
+          contentRight={QuantityButtons(add, substract, index)}
           errors={quantityErrors}
         />
       </S.Quantity>
       <S.Trash>
         <IconButton
-          testingContext="removeButton"
-          testingContextId={sku}
+          data-cy={`cartPageItem${index}BtnRemove`}
           size={22}
           name="trash"
           onClick={onRemove}
@@ -152,19 +141,15 @@ export const CartRow: React.FC<IProps> = ({
 
       <S.TotalPrice>
         <S.PriceLabel>
-          <S.LightFont>
-            <FormattedMessage {...commonMessages.totalPrice} />:
-          </S.LightFont>
+          <S.LightFont>Total Price:</S.LightFont>
         </S.PriceLabel>
-        <p data-test="totalPrice">{totalPrice}</p>
+        <p>{totalPrice}</p>
       </S.TotalPrice>
       <S.UnitPrice>
         <S.PriceLabel>
-          <S.LightFont>
-            <FormattedMessage {...commonMessages.price} />:
-          </S.LightFont>
+          <S.LightFont>Price:</S.LightFont>
         </S.PriceLabel>
-        <p data-test="unitPrice">{unitPrice}</p>
+        <p>{unitPrice}</p>
       </S.UnitPrice>
     </S.Wrapper>
   );

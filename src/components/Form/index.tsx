@@ -167,8 +167,7 @@ class Form<Values> extends React.Component<
             event.preventDefault();
           },
         });
-      }
-      if (child.type === SelectField || child.type === Select) {
+      } else if (child.type === SelectField || child.type === Select) {
         let defaultValue;
         if (
           child.props.name === "country" &&
@@ -192,8 +191,7 @@ class Form<Values> extends React.Component<
             });
           },
         });
-      }
-      if (child.props.type === "checkbox") {
+      } else if (child.props.type === "checkbox") {
         const defaultValue = this.state.data[child.props.name] || false;
         return React.cloneElement(child, {
           defaultValue,

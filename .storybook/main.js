@@ -23,9 +23,9 @@ module.exports = {
       test: /\.(ts|tsx)$/,
       use: [
         {
-          loader: "babel-loader",
+          loader: require.resolve("ts-loader"),
           options: {
-            configFile: "./babel.config.js",
+            transpileOnly: true,
           },
         },
         {
@@ -71,7 +71,7 @@ module.exports = {
 
     config.plugins.push(
       new ForkTsCheckerWebpackPlugin({
-        eslint: true,
+        tslint: true,
         exclude: "node_modules",
       })
     );

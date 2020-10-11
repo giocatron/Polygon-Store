@@ -1,17 +1,14 @@
-import { mount } from "enzyme";
+import { mount, shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
-import { IntlProvider } from "react-intl";
 
 import { AddressGridSelector } from ".";
 import { DEFAULT_PROPS } from "./fixtures";
 
 describe("<AddressGridSelector />", () => {
   it("exists", () => {
-    const wrapper = mount(
-      <IntlProvider locale="en">
-        <AddressGridSelector {...DEFAULT_PROPS} onSelect={jest.fn()} />
-      </IntlProvider>
+    const wrapper = shallow(
+      <AddressGridSelector {...DEFAULT_PROPS} onSelect={jest.fn()} />
     );
 
     expect(wrapper.exists()).toEqual(true);
@@ -20,9 +17,7 @@ describe("<AddressGridSelector />", () => {
   it("simulates select and submit events", done => {
     const onSelect = jest.fn();
     const wrapper = mount(
-      <IntlProvider locale="en">
-        <AddressGridSelector {...DEFAULT_PROPS} onSelect={onSelect} />
-      </IntlProvider>
+      <AddressGridSelector {...DEFAULT_PROPS} onSelect={onSelect} />
     );
 
     const input = wrapper.find("input").at(0);

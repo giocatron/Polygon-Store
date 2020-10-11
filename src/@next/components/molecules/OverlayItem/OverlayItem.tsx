@@ -8,20 +8,13 @@ import { IProps } from "./types";
 export const OverlayItem: React.FC<IProps> = ({
   children,
   selected,
-  testingContextId,
   disabled,
   onClick,
 }: IProps) => {
   return (
-    <S.Wrapper
-      selected={!!selected}
-      disabled={!!disabled}
-      onClick={onClick}
-      data-test="attributeOption"
-      data-test-id={testingContextId}
-    >
+    <S.Wrapper selected={!!selected} disabled={!!disabled} onClick={onClick}>
       {children}
-      {selected && <Icon name="tick" size={16} data-test="chosenIcon" />}
+      {selected && <Icon name="tick" size={16} />}
     </S.Wrapper>
   );
 };

@@ -68,7 +68,7 @@ exports[`Storyshots @components/atoms/NotificationTemplate default 1`] = `
 >
   <div
     className="c1"
-    data-test="alert"
+    data-cy="alert"
   >
     <div
       className="c2"

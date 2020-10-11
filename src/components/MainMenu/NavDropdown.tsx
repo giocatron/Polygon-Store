@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/mouse-events-have-key-events */
-
 import classNames from "classnames";
 import * as React from "react";
 

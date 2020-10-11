@@ -30,10 +30,6 @@ class PriceRangeFilter extends React.Component<
     document.addEventListener("mousedown", this.handleClickAway);
   }
 
-  componentWillUnmount() {
-    document.removeEventListener("mousedown", this.handleClickAway);
-  }
-
   handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     this.setState({ active: true });
     event.stopPropagation();
@@ -48,18 +44,21 @@ class PriceRangeFilter extends React.Component<
     }
   };
 
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", this.handleClickAway);
+  }
+
   createLabel() {
     const { from, to } = this.props;
     if (!!from && !!to) {
-      return `${from} - ${to}`;
+      return from + " - " + to;
+    } else if (!!from) {
+      return "from " + from;
+    } else if (!!to) {
+      return "to " + to;
+    } else {
+      return undefined;
     }
-    if (from) {
-      return `from ${from}`;
-    }
-    if (to) {
-      return `to ${to}`;
-    }
-    return undefined;
   }
 
   render() {

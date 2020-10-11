@@ -29,7 +29,6 @@ export interface IProps {
   handleChange?: (e: React.ChangeEvent) => void;
   handleBlur?: (e: React.FocusEvent) => void;
   includeEmail?: boolean;
-  testingContext?: string;
 }
 
 export type PropsWithFormik = Omit<IProps, "handleSubmit"> & IFormikProps;

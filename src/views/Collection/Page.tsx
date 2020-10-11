@@ -1,9 +1,7 @@
 import "../Category/scss/index.scss";
 
 import * as React from "react";
-import { useIntl } from "react-intl";
 
-import { commonMessages } from "@temp/intl";
 import { IFilterAttributes, IFilters } from "@types";
 import { ProductListHeader } from "../../@next/components/molecules";
 import { ProductList } from "../../@next/components/organisms";
@@ -11,8 +9,10 @@ import { Breadcrumbs, ProductsFeatured } from "../../components";
 import { getDBIdFromGraphqlId, maybe } from "../../core/utils";
 
 import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
-import { Collection_collection } from "./gqlTypes/Collection";
-import { CollectionProducts_collection_products } from "./gqlTypes/CollectionProducts";
+import {
+  Collection_collection,
+  Collection_products,
+} from "./gqlTypes/Collection";
 
 interface SortItem {
   label: string;
@@ -29,7 +29,7 @@ interface PageProps {
   displayLoader: boolean;
   filters: IFilters;
   hasNextPage: boolean;
-  products: CollectionProducts_collection_products;
+  products: Collection_products;
   sortOptions: SortOptions;
   clearFilters: () => void;
   onLoadMore: () => void;
@@ -57,7 +57,6 @@ const Page: React.FC<PageProps> = ({
   );
   const hasProducts = canDisplayProducts && !!products.totalCount;
   const [showFilters, setShowFilters] = React.useState(false);
-  const intl = useIntl();
 
   const breadcrumbs = [
     {
@@ -123,11 +122,7 @@ const Page: React.FC<PageProps> = ({
         )}
       </div>
 
-      {!hasProducts && (
-        <ProductsFeatured
-          title={intl.formatMessage(commonMessages.youMightLike)}
-        />
-      )}
+      {!hasProducts && <ProductsFeatured title="You might like" />}
     </div>
   );
 };

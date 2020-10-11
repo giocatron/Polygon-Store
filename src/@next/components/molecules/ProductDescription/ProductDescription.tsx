@@ -1,5 +1,4 @@
 import React from "react";
-import { FormattedMessage } from "react-intl";
 
 import { RichTextContent } from "@components/atoms";
 
@@ -32,7 +31,7 @@ export const ProductDescription: React.FC<IProps> = ({
             setActiveTab(TABS.DESCRIPTION);
           }}
         >
-          <FormattedMessage defaultMessage="DESCRIPTION" />
+          DESCRIPTION
         </S.TabTitle>
         <S.TabTitle
           active={activeTab === TABS.ATTRIBUTES}
@@ -45,7 +44,7 @@ export const ProductDescription: React.FC<IProps> = ({
             setActiveTab(TABS.ATTRIBUTES);
           }}
         >
-          <FormattedMessage defaultMessage="ATTRIBUTES" />
+          ATTRIBUTES
         </S.TabTitle>
       </S.Tabs>
       {activeTab === TABS.DESCRIPTION &&

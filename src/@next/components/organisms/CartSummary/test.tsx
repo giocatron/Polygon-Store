@@ -1,7 +1,6 @@
-import { mount } from "enzyme";
+import { mount, shallow } from "enzyme";
 import "jest-styled-components";
 import React from "react";
-import { IntlProvider } from "react-intl";
 
 import { CartSummaryRow } from "@components/molecules";
 
@@ -21,61 +20,37 @@ const money = {
 
 describe("<CartSummary />", () => {
   it("exists", () => {
-    const wrapper = mount(
-      <IntlProvider locale="en">
-        <CartSummary />
-      </IntlProvider>
-    );
+    const wrapper = shallow(<CartSummary />);
 
     expect(wrapper.exists()).toEqual(true);
   });
 
   it("should show subtotal price", () => {
-    const wrapper = mount(
-      <IntlProvider locale="en">
-        <CartSummary subtotal={money} />
-      </IntlProvider>
-    );
+    const wrapper = mount(<CartSummary subtotal={money} />);
 
     expect(wrapper.text()).toContain("123");
   });
 
   it("should show promo price", () => {
-    const wrapper = mount(
-      <IntlProvider locale="en">
-        <CartSummary promoCode={money} />
-      </IntlProvider>
-    );
+    const wrapper = mount(<CartSummary promoCode={money} />);
 
     expect(wrapper.text()).toContain("123");
   });
 
   it("should show shipping price", () => {
-    const wrapper = mount(
-      <IntlProvider locale="en">
-        <CartSummary shipping={money} />
-      </IntlProvider>
-    );
+    const wrapper = mount(<CartSummary shipping={money} />);
 
     expect(wrapper.text()).toContain("123");
   });
 
   it("should show total price", () => {
-    const wrapper = mount(
-      <IntlProvider locale="en">
-        <CartSummary total={money} />
-      </IntlProvider>
-    );
+    const wrapper = mount(<CartSummary total={money} />);
 
     expect(wrapper.text()).toContain("123");
   });
 
   it("should show correct number of product rows", () => {
-    const wrapper = mount(
-      <IntlProvider locale="en">
-        <CartSummary {...DEFAULT_PROPS} />
-      </IntlProvider>
-    );
+    const wrapper = shallow(<CartSummary {...DEFAULT_PROPS} />);
 
     expect(wrapper.find(CartSummaryRow).length).toEqual(
       DEFAULT_PROPS.products.length

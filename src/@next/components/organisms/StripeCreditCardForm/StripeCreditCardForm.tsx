@@ -41,7 +41,7 @@ const StripeCreditCardForm: React.FC<IProps> = ({
         isValid,
       }) => (
         <S.Form id={formId} ref={formRef} onSubmit={handleSubmit}>
-          <S.Card data-test="stripeForm">
+          <S.Card>
             <S.CardNumberField>
               <StripeInputElement
                 type="CardNumber"

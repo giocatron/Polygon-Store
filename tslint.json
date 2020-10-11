@@ -4,9 +4,6 @@
     "tslint-config-prettier",
     "tslint-plugin-cypress"
   ],
-  "linterOptions": {
-    "exclude": ["*.json", "**/*.json"]
-  },
   "rules": {
     "interface-name": false,
     "member-access": [true, "no-public"],

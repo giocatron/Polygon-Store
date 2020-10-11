@@ -1,6 +1,5 @@
 import * as H from "history";
-
 export interface IProps {
-  orders?: any[];
+  orders: any[];
   history: H.History;
 }

@@ -1,25 +1,20 @@
 import "./scss/index.scss";
 
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Redirect } from "react-router";
 
-import { useAuth } from "@saleor/sdk";
+import { useUserDetails } from "@sdk/react";
 
 import { Offline, OfflinePlaceholder, Online, OverlayContext } from "..";
 
 import CheckoutAsGuest from "./CheckoutAsGuest";
+import ResetPasswordForm from "./ResetPasswordForm";
 import SignInForm from "./SignInForm";
-import { OverlayType, OverlayTheme } from "../Overlay";
 
 const CheckoutLogin: React.FC<{}> = () => {
+  const [resetPassword, setResetPassword] = useState(false);
   const overlay = useContext(OverlayContext);
-  const { user } = useAuth();
-  const { show } = overlay;
-
-  const showPasswordResetOverlay = () => {
-    show(OverlayType.password, OverlayTheme.right);
-  };
-
+  const { data: user } = useUserDetails();
   if (user) {
     return <Redirect to="/checkout/" />;
   }
@@ -29,7 +24,19 @@ const CheckoutLogin: React.FC<{}> = () => {
         <div className="checkout-login">
           <CheckoutAsGuest overlay={overlay} checkoutUrl="/checkout/" />
           <div className="checkout-login__user">
-            <SignInForm onForgottenPasswordClick={showPasswordResetOverlay} />
+            {resetPassword ? (
+              <ResetPasswordForm
+                onClick={() => {
+                  setResetPassword(false);
+                }}
+              />
+            ) : (
+              <SignInForm
+                onClick={() => {
+                  setResetPassword(true);
+                }}
+              />
+            )}
           </div>
         </div>
       </Online>

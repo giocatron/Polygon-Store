@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import { useState } from "react";
 
 export const useLocalStorage = (key: string, initialValue?: string) => {

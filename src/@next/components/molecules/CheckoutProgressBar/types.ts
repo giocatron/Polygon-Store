@@ -1,6 +1,9 @@
-import { ICheckoutStep } from "@types";
-
+export interface IStep {
+  index: number;
+  link: string;
+  name: string;
+}
 export interface IProps {
-  steps: ICheckoutStep[];
+  steps: IStep[];
   activeStep: number;
 }

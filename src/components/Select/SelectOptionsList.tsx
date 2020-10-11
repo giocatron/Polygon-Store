@@ -1,6 +1,5 @@
 import classNames from "classnames";
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
 
 import { ISelectOptionsList } from "./customTypes";
 
@@ -8,7 +7,7 @@ type Ref = HTMLParagraphElement;
 
 const renderNoOptions = () => (
   <p className="select__option select__option--disabled" key="no-option">
-    <FormattedMessage defaultMessage="No Options" />
+    {"No Options"}
   </p>
 );
 

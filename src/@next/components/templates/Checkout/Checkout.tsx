@@ -14,8 +14,6 @@ const Checkout: React.FC<IProps> = ({
   loading,
   navigation,
   checkout,
-  paymentGateways,
-  hidePaymentGateways = false,
   cartSummary,
   button,
 }: IProps) => {
@@ -23,15 +21,12 @@ const Checkout: React.FC<IProps> = ({
     <Container>
       {loading && (
         <S.Loader>
-          <Loader fullScreen />
+          <Loader fullScreen={true} />
         </S.Loader>
       )}
       <S.Wrapper>
         <S.Navigation>{navigation}</S.Navigation>
         <S.Checkout>{checkout}</S.Checkout>
-        <S.PaymentGateways hide={hidePaymentGateways}>
-          {paymentGateways}
-        </S.PaymentGateways>
         <S.CartSummary>{cartSummary}</S.CartSummary>
         <S.Button>{button}</S.Button>
       </S.Wrapper>

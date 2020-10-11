@@ -7,8 +7,4 @@ export interface IProps {
    * Value
    */
   attributeValue: string;
-  /**
-   * Used as marker for writing e2e tests
-   */
-  testingContext: string;
 }

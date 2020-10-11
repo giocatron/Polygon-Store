@@ -1,20 +1,16 @@
 import React from "react";
-import { useIntl, IntlShape } from "react-intl";
 import { Link } from "react-router-dom";
-import { checkoutMessages } from "@temp/intl";
-
-import { ICheckoutStep } from "@types";
 
 import * as S from "./styles";
-import { IProps } from "./types";
+import { IProps, IStep } from "./types";
 
 const activeDot = (
   <S.ActiveDot>
-    <S.Dot done />
+    <S.Dot done={true} />
   </S.ActiveDot>
 );
 
-const doneDot = <S.Dot done />;
+const doneDot = <S.Dot done={true} />;
 
 const inactiveDot = <S.Dot />;
 
@@ -54,35 +50,15 @@ const generateProgressBar = (
   }
 };
 
-const generateSteps = (
-  steps: ICheckoutStep[],
-  currentActive: number,
-  intl: IntlShape
-) => {
-  return steps?.map((step, index) => {
-    let { name } = step;
-    /* eslint-disable default-case */
-    switch (step.name) {
-      case "Address":
-        name = intl.formatMessage(checkoutMessages.stepNameAddress);
-        break;
-      case "Shipping":
-        name = intl.formatMessage(checkoutMessages.stepNameShipping);
-        break;
-      case "Payment":
-        name = intl.formatMessage(checkoutMessages.stepNamePayment);
-        break;
-      case "Review":
-        name = intl.formatMessage(checkoutMessages.stepNameReview);
-        break;
-    }
+const generateSteps = (steps: IStep[], currentActive: number) => {
+  return steps?.map(step => {
     return (
       <S.Step key={step.index}>
         <Link to={step.link}>
-          {generateDot(index, currentActive)}
-          {generateLabel(index, name, steps.length)}
+          {generateDot(step.index, currentActive)}
+          {generateLabel(step.index, step.name, steps.length)}
         </Link>
-        {generateProgressBar(index, currentActive, steps.length)}
+        {generateProgressBar(step.index, currentActive, steps.length)}
       </S.Step>
     );
   });
@@ -95,8 +71,7 @@ const CheckoutProgressBar: React.FC<IProps> = ({
   steps,
   activeStep,
 }: IProps) => {
-  const intl = useIntl();
-  return <S.Wrapper>{generateSteps(steps, activeStep, intl)}</S.Wrapper>;
+  return <S.Wrapper>{generateSteps(steps, activeStep)}</S.Wrapper>;
 };
 
 export { CheckoutProgressBar };

@@ -6,59 +6,11 @@ import {
   productPricingFragment,
 } from "../Product/queries";
 import { Category, CategoryVariables } from "./gqlTypes/Category";
-import {
-  CategoryProducts,
-  CategoryProductsVariables,
-} from "./gqlTypes/CategoryProducts";
-
-export const categoryProductsDataQuery = gql`
-  query Category($id: ID!) {
-    category(id: $id) {
-      seoDescription
-      seoTitle
-      id
-      name
-      backgroundImage {
-        url
-      }
-      ancestors(last: 5) {
-        edges {
-          node {
-            id
-            name
-          }
-        }
-      }
-    }
-    attributes(
-      filter: { inCategory: $id, filterableInStorefront: true }
-      first: 100
-    ) {
-      edges {
-        node {
-          id
-          name
-          slug
-          values {
-            id
-            name
-            slug
-          }
-        }
-      }
-    }
-  }
-`;
-
-export const TypedCategoryProductsDataQuery = TypedQuery<
-  Category,
-  CategoryVariables
->(categoryProductsDataQuery);
 
 export const categoryProductsQuery = gql`
   ${basicProductFragment}
   ${productPricingFragment}
-  query CategoryProducts(
+  query Category(
     $id: ID!
     $attributes: [AttributeInput]
     $after: String
@@ -95,10 +47,41 @@ export const categoryProductsQuery = gql`
         startCursor
       }
     }
+    category(id: $id) {
+      seoDescription
+      seoTitle
+      id
+      name
+      backgroundImage {
+        url
+      }
+      ancestors(last: 5) {
+        edges {
+          node {
+            id
+            name
+          }
+        }
+      }
+    }
+    attributes(filter: { inCategory: $id }, first: 100) {
+      edges {
+        node {
+          id
+          name
+          slug
+          values {
+            id
+            name
+            slug
+          }
+        }
+      }
+    }
   }
 `;
 
 export const TypedCategoryProductsQuery = TypedQuery<
-  CategoryProducts,
-  CategoryProductsVariables
+  Category,
+  CategoryVariables
 >(categoryProductsQuery);

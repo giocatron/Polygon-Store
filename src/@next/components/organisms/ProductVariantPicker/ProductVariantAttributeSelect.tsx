@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
-import { useIntl } from "react-intl";
+import React from "react";
 
 import { Icon, Input } from "@components/atoms";
 import { InputSelect } from "@components/molecules";
 import { useSelectableProductVariantsAttributeValues } from "@hooks";
-import { ProductDetails_product_variants } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
+import { ProductDetails_product_variants } from "@sdk/queries/gqlTypes/ProductDetails";
 import {
   IProductVariantsAttribute,
   IProductVariantsAttributesSelectedValues,
@@ -22,7 +21,6 @@ export const ProductVariantAttributeSelect: React.FC<{
   productVariantsAttributesSelectedValues: IProductVariantsAttributesSelectedValues;
   onChangeSelection: (value: any, name?: any) => void;
   onClearSelection: () => void;
-  defaultValue?: string;
 }> = ({
   selectSidebar = false,
   selectSidebarTarget,
@@ -32,34 +30,36 @@ export const ProductVariantAttributeSelect: React.FC<{
   productVariantsAttributesSelectedValues,
   onChangeSelection,
   onClearSelection,
-  defaultValue,
 }) => {
   const [showSelectSidebar, setShowSelectSidebar] = React.useState(false);
+
   const selectableProductVariantsAttributeValues = useSelectableProductVariantsAttributeValues(
     productVariantsAttributeId,
     productVariants,
     productVariantsAttributesSelectedValues
   );
-  const intl = useIntl();
 
-  const selectedAttribute =
-    productVariantsAttributesSelectedValues &&
-    productVariantsAttributesSelectedValues[productVariantsAttributeId];
-
-  const selectedValue = selectedAttribute && {
-    disabled: false,
-    id: selectedAttribute.id,
-    label: selectedAttribute.name!,
-    value: selectedAttribute.value!,
-  };
+  const selectedValue = productVariantsAttributesSelectedValues &&
+    productVariantsAttributesSelectedValues[productVariantsAttributeId] && {
+      disabled: false,
+      id: productVariantsAttributesSelectedValues[productVariantsAttributeId]!
+        .id,
+      label: productVariantsAttributesSelectedValues[
+        productVariantsAttributeId
+      ]!.name!,
+      value: productVariantsAttributesSelectedValues[
+        productVariantsAttributeId
+      ]!.value!,
+    };
 
   const attributeOptions = productVariantsAttribute.values
     .filter(value => value)
     .map(value => {
-      const selectableAttribute =
-        selectableProductVariantsAttributeValues[productVariantsAttributeId];
       const isOptionDisabled =
-        selectableAttribute && !selectableAttribute.values.includes(value);
+        selectableProductVariantsAttributeValues[productVariantsAttributeId] &&
+        !selectableProductVariantsAttributeValues[
+          productVariantsAttributeId
+        ].values.includes(value);
 
       return {
         disabled: isOptionDisabled,
@@ -69,7 +69,9 @@ export const ProductVariantAttributeSelect: React.FC<{
       };
     });
 
-  const selectLabel = productVariantsAttribute.attribute.name || "";
+  const selectLabel = productVariantsAttribute.attribute.name
+    ? productVariantsAttribute.attribute.name!
+    : "";
 
   const selectedValuesList = selectedValue ? [selectedValue.value] : [];
 
@@ -77,19 +79,14 @@ export const ProductVariantAttributeSelect: React.FC<{
     .filter(optionValue => optionValue.disabled)
     .map(optionValue => optionValue.value);
 
-  const onSelectValueHandler = (optionValue: string, callback?: () => void) => {
+  const handleSelectValueInSidebar = (optionValue: string) => {
     if (
       disabledValuesList.every(disabledValue => disabledValue !== optionValue)
     ) {
       onChangeSelection(optionValue);
-      if (callback) {
-        callback();
-      }
+      setShowSelectSidebar(false);
     }
   };
-
-  const handleSelectValueInSidebar = (optionValue: string) =>
-    onSelectValueHandler(optionValue, () => setShowSelectSidebar(false));
 
   const getRightInputContent = (isInputFilled: boolean) => {
     if (isInputFilled) {
@@ -98,19 +95,14 @@ export const ProductVariantAttributeSelect: React.FC<{
           <Icon name="select_x" size={10} />
         </S.SelectIndicator>
       );
+    } else {
+      return (
+        <S.SelectIndicator onClick={() => setShowSelectSidebar(true)}>
+          <Icon name="subcategories" size={10} />
+        </S.SelectIndicator>
+      );
     }
-    return (
-      <S.SelectIndicator onClick={() => setShowSelectSidebar(true)}>
-        <Icon name="subcategories" size={10} />
-      </S.SelectIndicator>
-    );
   };
-
-  useEffect(() => {
-    if (defaultValue) {
-      onSelectValueHandler(defaultValue);
-    }
-  }, [defaultValue]);
 
   if (selectSidebar) {
     return (
@@ -121,47 +113,34 @@ export const ProductVariantAttributeSelect: React.FC<{
           value={selectedValue ? selectedValue.value : ""}
           onChange={() => null}
           contentRight={getRightInputContent(!!selectedValue)}
-          readOnly
-          name={
-            productVariantsAttribute.attribute.slug
-              ? productVariantsAttribute.attribute.slug
-              : ""
-          }
-          data-test="variantPicker"
+          readOnly={true}
         />
         <SelectSidebar
           options={attributeOptions}
           selectedOptions={selectedValuesList}
           disabledOptions={disabledValuesList}
-          title={intl.formatMessage(
-            {
-              defaultMessage: "Please select {selectLabel}",
-            },
-            { selectLabel }
-          )}
+          title={`Please select ${selectLabel}`}
           show={showSelectSidebar}
           hide={() => setShowSelectSidebar(false)}
           onSelect={handleSelectValueInSidebar}
           target={selectSidebarTarget}
-          testingContextId={
-            productVariantsAttribute.attribute.slug
-              ? productVariantsAttribute.attribute.slug
-              : ""
-          }
         />
       </>
     );
+  } else {
+    return (
+      <InputSelect
+        name={productVariantsAttribute.attribute.id}
+        label={selectLabel}
+        value={selectedValue}
+        options={attributeOptions}
+        isOptionDisabled={optionValue => optionValue.disabled}
+        onChange={optionValue =>
+          onChangeSelection(optionValue && optionValue.value)
+        }
+        clearable={true}
+        clearValue={onClearSelection}
+      />
+    );
   }
-  return (
-    <InputSelect
-      name={productVariantsAttribute.attribute.id}
-      label={selectLabel}
-      value={selectedValue}
-      options={attributeOptions}
-      isOptionDisabled={optionValue => optionValue.disabled}
-      onChange={optionValue => onChangeSelection(optionValue?.value)}
-      clearable
-      clearValue={onClearSelection}
-    />
-  );
 };

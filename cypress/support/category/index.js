@@ -1,11 +1,17 @@
-Cypress.Commands.add("openFilterSidebar", () => {
-  const filterButton = "[data-test=filtersButton]";
+const openFilterSidebar = () => {
+  return cy
+    .get("[data-cy=filters__button]")
+    .click()
+    .wait(500);
+};
 
-  return cy.get(filterButton).click();
-});
+const openCategory = (index = 0) => {
+  return cy
+    .wait(5000)
+    .get("[data-cy=main-menu__item]")
+    .eq(index)
+    .click();
+};
 
-Cypress.Commands.add("openCategory", (index = 0) => {
-  const leftMainMenu = "[data-test=mainMenuItem]";
-
-  return cy.get(leftMainMenu, { timeout: 5000 }).eq(index).click();
-});
+Cypress.Commands.add("openFilterSidebar", openFilterSidebar);
+Cypress.Commands.add("openCategory", openCategory);

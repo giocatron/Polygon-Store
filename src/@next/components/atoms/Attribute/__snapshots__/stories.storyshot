@@ -34,9 +34,7 @@ exports[`Storyshots @components/atoms/Attribute default 1`] = `
     >
       First Name
     </div>
-    <div
-      data-test="firstNameAttribute"
-    >
+    <div>
       John
     </div>
   </div>

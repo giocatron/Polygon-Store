@@ -167,7 +167,7 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
       >
         <button
           className="c4"
-          data-test="filtersButton"
+          data-cy="filters__button"
           onClick={[Function]}
         >
           <svg
@@ -193,13 +193,12 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
       >
         <span
           className="c7"
-          data-test="productsFoundCounter"
+          data-cy="no-of-products-found_label"
         >
           <span
             className="c8"
           >
-            Products found:
-             
+            Products found: 
           </span>
           255
         </span>
@@ -211,7 +210,7 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
           >
             <div
               className="c10"
-              data-test="sortingDropdown"
+              data-cy="dropdown-select"
             >
               <div
                 className="c11"
@@ -222,13 +221,13 @@ exports[`Storyshots @components/molecules/ProductListHeader default 1`] = `
                 >
                   <div
                     className="c12"
+                    data-cy="dropdown-select-input"
                     onClick={[Function]}
                   >
                     <span
                       className="c13"
                     >
                       Sort by:
-                       
                     </span>
                     <div
                       className="c14"
@@ -445,7 +444,7 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
       >
         <button
           className="c4"
-          data-test="filtersButton"
+          data-cy="filters__button"
           onClick={[Function]}
         >
           <svg
@@ -472,7 +471,6 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
         </button>
         <button
           className="c6"
-          data-test="clearFiltersButton"
           onClick={[Function]}
         >
           CLEAR FILTERS
@@ -483,13 +481,12 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
       >
         <span
           className="c8"
-          data-test="productsFoundCounter"
+          data-cy="no-of-products-found_label"
         >
           <span
             className="c9"
           >
-            Products found:
-             
+            Products found: 
           </span>
           255
         </span>
@@ -501,7 +498,7 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
           >
             <div
               className="c11"
-              data-test="sortingDropdown"
+              data-cy="dropdown-select"
             >
               <div
                 className="c12"
@@ -512,13 +509,13 @@ exports[`Storyshots @components/molecules/ProductListHeader with active filters 
                 >
                   <div
                     className="c13"
+                    data-cy="dropdown-select-input"
                     onClick={[Function]}
                   >
                     <span
                       className="c14"
                     >
                       Sort by:
-                       
                     </span>
                     <div
                       className="c15"

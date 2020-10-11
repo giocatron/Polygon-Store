@@ -2,9 +2,8 @@ import { mount, shallow } from "enzyme";
 import { createBrowserHistory } from "history";
 import "jest-styled-components";
 import React from "react";
-import { IntlProvider } from "react-intl";
 
-import { Thumbnail } from "..";
+import { Thumbnail } from "../";
 
 import { OrderTabel } from ".";
 import * as S from "./styles";
@@ -87,21 +86,13 @@ const ORDERS = [
 
 describe("<OrderTabel />", () => {
   it("exists", () => {
-    const wrapper = shallow(
-      <IntlProvider locale="en">
-        <OrderTabel history={history} orders={[]} />
-      </IntlProvider>
-    );
+    const wrapper = shallow(<OrderTabel history={history} orders={[]} />);
 
     expect(wrapper.exists()).toEqual(true);
   });
 
   it("should render passed orders array", () => {
-    const wrapper = mount(
-      <IntlProvider locale="en">
-        <OrderTabel history={history} orders={ORDERS} />
-      </IntlProvider>
-    );
+    const wrapper = mount(<OrderTabel history={history} orders={ORDERS} />);
 
     expect(wrapper.text()).toContain("77");
     expect(wrapper.text()).toContain("9/4/2019");
@@ -115,14 +106,13 @@ describe("<OrderTabel />", () => {
   });
 
   it("should navigate to particular order when clicking on order row", () => {
-    const wrapper = mount(
-      <IntlProvider locale="en">
-        <OrderTabel history={history} orders={ORDERS} />
-      </IntlProvider>
-    );
+    const wrapper = mount(<OrderTabel history={history} orders={ORDERS} />);
     const historySpy = jest.spyOn(history, "push");
 
-    wrapper.find(S.Row).at(1).simulate("click");
+    wrapper
+      .find(S.Row)
+      .at(1)
+      .simulate("click");
 
     expect(historySpy).toHaveBeenCalledWith(
       `/order-history/${ORDERS[0].node.token}`
@@ -130,15 +120,14 @@ describe("<OrderTabel />", () => {
   });
 
   it("should navigate to product page when clicking on product thumbnail", () => {
-    const wrapper = mount(
-      <IntlProvider locale="en">
-        <OrderTabel history={history} orders={ORDERS} />
-      </IntlProvider>
-    );
+    const wrapper = mount(<OrderTabel history={history} orders={ORDERS} />);
     const historySpy = jest.spyOn(history, "push");
     historySpy.mockClear();
 
-    wrapper.find(Thumbnail).first().simulate("click");
+    wrapper
+      .find(Thumbnail)
+      .first()
+      .simulate("click");
 
     expect(historySpy).toHaveBeenCalledWith("/product/apple-juice/72/");
   });

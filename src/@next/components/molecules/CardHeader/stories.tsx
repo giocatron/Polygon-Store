@@ -32,14 +32,7 @@ storiesOf("@components/molecules/CardHeader", module)
     return renderHeader(PROPS);
   })
   .add("with custom icon", () => {
-    const icon = (
-      <IconButton
-        testingContext="test"
-        name="edit"
-        size={24}
-        onClick={action("edit")}
-      />
-    );
+    const icon = <IconButton name="edit" size={24} onClick={action("edit")} />;
     const PROPS = { ...DEFAULT_PROPS, customIcon: icon };
     return renderHeader(PROPS);
   })
@@ -50,12 +43,7 @@ storiesOf("@components/molecules/CardHeader", module)
   })
   .add("with big text size", () => {
     const customIcon = (
-      <IconButton
-        testingContext="test"
-        name="trash"
-        size={30}
-        onClick={action("trash")}
-      />
+      <IconButton name="trash" size={30} onClick={action("trash")} />
     );
     const titleSize: TitleSize = "lg";
     const PROPS = { ...DEFAULT_PROPS, customIcon, divider: true, titleSize };

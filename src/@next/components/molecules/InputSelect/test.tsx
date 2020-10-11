@@ -49,7 +49,10 @@ describe("<InputSelect />", () => {
     );
 
     wrapper.find("input").simulate("focus");
-    wrapper.find(components.Option).at(0).simulate("click");
+    wrapper
+      .find(components.Option)
+      .at(0)
+      .simulate("click");
 
     expect(wrapper.text()).toContain(DEFAULT_PROPS.options[0].country);
   });

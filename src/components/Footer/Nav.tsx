@@ -19,9 +19,7 @@ class Nav extends React.PureComponent {
                   </h4>
                   <div className="footer-nav__section-content">
                     {item.children.map(subItem => (
-                      <p key={subItem.id}>
-                        <NavLink item={subItem} />
-                      </p>
+                      <p key={subItem.id}><NavLink item={subItem} /></p>
                     ))}
                   </div>
                 </div>

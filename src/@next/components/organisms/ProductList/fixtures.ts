@@ -1,8 +1,13 @@
-import { ProductList_products_edges_node } from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
+import { ProductList_products_edges_node } from "@sdk/queries/gqlTypes/ProductList";
 
 export const PRODUCTS: ProductList_products_edges_node[] = [
   {
     __typename: "Product",
+    category: {
+      __typename: "Category",
+      id: "Q2F0ZWdvcnk6MTQ=",
+      name: "Juices",
+    },
     id: "UHJvZHVjdDo3Mg==1",
     name: "Apple Juice",
     pricing: {
@@ -81,6 +86,11 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
   },
   {
     __typename: "Product",
+    category: {
+      __typename: "Category",
+      id: "Q2F0ZWdvcnk6MTQ=",
+      name: "Juices",
+    },
     id: "UHJvZHVjdDo3Mg==2",
     name: "Apple Juice",
     pricing: {
@@ -159,6 +169,11 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
   },
   {
     __typename: "Product",
+    category: {
+      __typename: "Category",
+      id: "Q2F0ZWdvcnk6MTQ=",
+      name: "Juices",
+    },
     id: "UHJvZHVjdDo3Mg==3",
     name: "Apple Juice",
     pricing: {
@@ -237,6 +252,11 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
   },
   {
     __typename: "Product",
+    category: {
+      __typename: "Category",
+      id: "Q2F0ZWdvcnk6MTQ=",
+      name: "Juices",
+    },
     id: "UHJvZHVjdDo3Mg==4",
     name: "Apple Juice",
     pricing: {
@@ -315,6 +335,11 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
   },
   {
     __typename: "Product",
+    category: {
+      __typename: "Category",
+      id: "Q2F0ZWdvcnk6MTQ=",
+      name: "Juices",
+    },
     id: "UHJvZHVjdDo3Mg==5",
     name: "Apple Juice",
     pricing: {
@@ -393,6 +418,11 @@ export const PRODUCTS: ProductList_products_edges_node[] = [
   },
   {
     __typename: "Product",
+    category: {
+      __typename: "Category",
+      id: "Q2F0ZWdvcnk6MTQ=",
+      name: "Juices",
+    },
     id: "UHJvZHVjdDo3Mg==6",
     name: "Apple Juice",
     pricing: {

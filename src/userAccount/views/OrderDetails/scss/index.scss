@@ -18,16 +18,6 @@
     }
   }
 
-  &__header {
-    display: flex;
-    justify-content: space-between;
-
-    &-menu {
-      display: flex;
-      align-items: center;
-    }
-  }
-
   &__status {
     color: $gray-dark;
   }

@@ -53,15 +53,17 @@ export const InputSelect: React.FC<IProps> = ({
       return (
         <>
           <components.Control
-            data-test="inputSelect"
+            data-cy="input-select"
             {...{ customTheme, ...props }}
           />
-          <InputLabel
-            labelBackground={customTheme.colors.light}
-            active={props.selectProps.menuIsOpen || props.hasValue}
-          >
-            {label}
-          </InputLabel>
+          {
+            <InputLabel
+              labelBackground={customTheme.colors.light}
+              active={props.selectProps.menuIsOpen || props.hasValue}
+            >
+              {label}
+            </InputLabel>
+          }
         </>
       );
     },
@@ -77,14 +79,15 @@ export const InputSelect: React.FC<IProps> = ({
             <Icon name="select_x" size={10} />
           </S.ClearIndicator>
         );
+      } else {
+        // Boolean to string conversion done due to
+        // https://github.com/styled-components/styled-components/issues/1198
+        return (
+          <S.DropdownIndicator rotate={String(selectProps.menuIsOpen)}>
+            <Icon name="select_arrow" size={10} />
+          </S.DropdownIndicator>
+        );
       }
-      // Boolean to string conversion done due to
-      // https://github.com/styled-components/styled-components/issues/1198
-      return (
-        <S.DropdownIndicator rotate={String(selectProps.menuIsOpen)}>
-          <Icon name="select_arrow" size={10} />
-        </S.DropdownIndicator>
-      );
     },
     Input: (props: InputProps) => {
       return <components.Input {...{ ...props, ...inputProps }} />;

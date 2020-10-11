@@ -1,4 +1,4 @@
-import { ProductDetails_product_variants } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
+import { ProductDetails_product_variants } from "@sdk/queries/gqlTypes/ProductDetails";
 
 // tslint:disable:object-literal-sort-keys
 export const productVariants: ProductDetails_product_variants[] = [
@@ -8,7 +8,6 @@ export const productVariants: ProductDetails_product_variants[] = [
     name: "1l / cotton / yellow",
     quantityAvailable: 50,
     isAvailable: true,
-    images: [],
     pricing: {
       onSale: false,
       priceUndiscounted: {
@@ -44,7 +43,6 @@ export const productVariants: ProductDetails_product_variants[] = [
         attribute: {
           id: "QXR0cmlidXRlOjI1",
           name: "Material",
-          slug: "material",
           __typename: "Attribute",
         },
         values: [
@@ -61,7 +59,6 @@ export const productVariants: ProductDetails_product_variants[] = [
         attribute: {
           id: "QXR0cmlidXRlOjIw",
           name: "Color",
-          slug: "color",
           __typename: "Attribute",
         },
         values: [
@@ -78,7 +75,6 @@ export const productVariants: ProductDetails_product_variants[] = [
         attribute: {
           id: "QXR0cmlidXRlOjE1",
           name: "Size",
-          slug: "size",
           __typename: "Attribute",
         },
         values: [
@@ -100,7 +96,6 @@ export const productVariants: ProductDetails_product_variants[] = [
     name: "2l / wool / red",
     quantityAvailable: 50,
     isAvailable: true,
-    images: [],
     pricing: {
       onSale: false,
       priceUndiscounted: {
@@ -136,7 +131,6 @@ export const productVariants: ProductDetails_product_variants[] = [
         attribute: {
           id: "QXR0cmlidXRlOjI1",
           name: "Material",
-          slug: "material",
           __typename: "Attribute",
         },
         values: [
@@ -153,7 +147,6 @@ export const productVariants: ProductDetails_product_variants[] = [
         attribute: {
           id: "QXR0cmlidXRlOjIw",
           name: "Color",
-          slug: "color",
           __typename: "Attribute",
         },
         values: [
@@ -170,7 +163,6 @@ export const productVariants: ProductDetails_product_variants[] = [
         attribute: {
           id: "QXR0cmlidXRlOjE1",
           name: "Size",
-          slug: "size",
           __typename: "Attribute",
         },
         values: [
@@ -192,7 +184,6 @@ export const productVariants: ProductDetails_product_variants[] = [
     name: "500ml / wool / turquoise",
     quantityAvailable: 50,
     isAvailable: true,
-    images: [],
     pricing: {
       onSale: false,
       priceUndiscounted: {
@@ -228,7 +219,6 @@ export const productVariants: ProductDetails_product_variants[] = [
         attribute: {
           id: "QXR0cmlidXRlOjI1",
           name: "Material",
-          slug: "material",
           __typename: "Attribute",
         },
         values: [
@@ -245,7 +235,6 @@ export const productVariants: ProductDetails_product_variants[] = [
         attribute: {
           id: "QXR0cmlidXRlOjIw",
           name: "Color",
-          slug: "color",
           __typename: "Attribute",
         },
         values: [
@@ -262,7 +251,6 @@ export const productVariants: ProductDetails_product_variants[] = [
         attribute: {
           id: "QXR0cmlidXRlOjE1",
           name: "Size",
-          slug: "size",
           __typename: "Attribute",
         },
         values: [

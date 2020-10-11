@@ -1,11 +1,8 @@
 import * as React from "react";
-import { useIntl } from "react-intl";
 import { RouteComponentProps } from "react-router";
 
-import { prodListHeaderCommonMsg } from "@temp/intl";
 import { IFilters } from "@types";
 import { StringParam, useQueryParam } from "use-query-params";
-import { Loader } from "@components/atoms";
 import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
@@ -16,10 +13,7 @@ import {
   maybe,
 } from "../../core/utils";
 import Page from "./Page";
-import {
-  TypedCollectionProductsDataQuery,
-  TypedCollectionProductsQuery,
-} from "./queries";
+import { TypedCollectionProductsQuery } from "./queries";
 
 type ViewProps = RouteComponentProps<{
   id: string;
@@ -29,7 +23,7 @@ export const FilterQuerySet = {
   encode(valueObj) {
     const str = [];
     Object.keys(valueObj).forEach(value => {
-      str.push(`${value}_${valueObj[value].join("_")}`);
+      str.push(value + "_" + valueObj[value].join("_"));
     });
     return str.join(".");
   },
@@ -51,7 +45,6 @@ export const View: React.FC<ViewProps> = ({ match }) => {
     "filters",
     FilterQuerySet
   );
-  const intl = useIntl();
 
   const clearFilters = () => {
     setAttributeFilters({});
@@ -103,33 +96,31 @@ export const View: React.FC<ViewProps> = ({ match }) => {
 
   const sortOptions = [
     {
-      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsClear),
+      label: "Clear...",
       value: null,
     },
     {
-      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsPrice),
+      label: "Price Low-High",
       value: "price",
     },
     {
-      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsPriceDsc),
+      label: "Price High-Low",
       value: "-price",
     },
     {
-      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsName),
+      label: "Name Increasing",
       value: "name",
     },
     {
-      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsNameDsc),
+      label: "Name Decreasing",
       value: "-name",
     },
     {
-      label: intl.formatMessage(prodListHeaderCommonMsg.sortOptionsUpdatedAt),
+      label: "Last updated Ascending",
       value: "updated_at",
     },
     {
-      label: intl.formatMessage(
-        prodListHeaderCommonMsg.sortOptionsUpdatedAtDsc
-      ),
+      label: "Last updated Descending",
       value: "-updated_at",
     },
   ];
@@ -137,107 +128,76 @@ export const View: React.FC<ViewProps> = ({ match }) => {
   return (
     <NetworkStatus>
       {isOnline => (
-        <TypedCollectionProductsDataQuery
+        <TypedCollectionProductsQuery
           variables={variables}
           errorPolicy="all"
           loaderFull
         >
-          {collectionData => {
-            if (collectionData.loading) {
-              return <Loader />;
+          {({ loading, data, loadMore }) => {
+            const canDisplayFilters = maybe(
+              () => !!data.attributes.edges && !!data.collection.name,
+              false
+            );
+
+            if (canDisplayFilters) {
+              const handleLoadMore = () =>
+                loadMore(
+                  (prev, next) => ({
+                    ...prev,
+                    products: {
+                      ...prev.products,
+                      edges: [...prev.products.edges, ...next.products.edges],
+                      pageInfo: next.products.pageInfo,
+                    },
+                  }),
+                  { after: data.products.pageInfo.endCursor }
+                );
+
+              return (
+                <MetaWrapper
+                  meta={{
+                    description: data.collection.seoDescription,
+                    title: data.collection.seoTitle,
+                    type: "product.collection",
+                  }}
+                >
+                  <Page
+                    clearFilters={clearFilters}
+                    attributes={data.attributes.edges.map(edge => edge.node)}
+                    collection={data.collection}
+                    displayLoader={loading}
+                    hasNextPage={maybe(
+                      () => data.products.pageInfo.hasNextPage,
+                      false
+                    )}
+                    sortOptions={sortOptions}
+                    activeSortOption={filters.sortBy}
+                    filters={filters}
+                    products={data.products}
+                    onAttributeFiltersChange={onFiltersChange}
+                    onLoadMore={handleLoadMore}
+                    activeFilters={
+                      filters!.attributes
+                        ? Object.keys(filters!.attributes).length
+                        : 0
+                    }
+                    onOrder={value => {
+                      setSort(value.value);
+                    }}
+                  />
+                </MetaWrapper>
+              );
             }
 
-            if (
-              collectionData.data &&
-              collectionData.data.collection === null
-            ) {
+            if (data && data.collection === null) {
               return <NotFound />;
             }
 
             if (!isOnline) {
               return <OfflinePlaceholder />;
             }
-
-            const canDisplayFilters =
-              !!collectionData.data?.attributes?.edges &&
-              !!collectionData.data?.collection?.name;
-
-            return (
-              <TypedCollectionProductsQuery variables={variables}>
-                {collectionProductsData => {
-                  if (!canDisplayFilters && collectionProductsData.loading) {
-                    return <Loader />;
-                  }
-
-                  const handleLoadMore = () =>
-                    collectionProductsData.loadMore(
-                      (prev, next) => ({
-                        ...prev,
-                        products: {
-                          ...prev.collection.products,
-                          edges: [
-                            ...prev.collection.products.edges,
-                            ...next.collection.products.edges,
-                          ],
-                          pageInfo: next.collection.products.pageInfo,
-                        },
-                      }),
-                      {
-                        after:
-                          collectionProductsData.data.collection.products
-                            .pageInfo.endCursor,
-                      }
-                    );
-                  if (canDisplayFilters) {
-                    return (
-                      <MetaWrapper
-                        meta={{
-                          description:
-                            collectionData.data.collection.seoDescription,
-                          title: collectionData.data.collection.seoTitle,
-                          type: "product.collection",
-                        }}
-                      >
-                        <Page
-                          clearFilters={clearFilters}
-                          attributes={collectionData.data.attributes.edges.map(
-                            edge => edge.node
-                          )}
-                          collection={collectionData.data.collection}
-                          displayLoader={collectionData.loading}
-                          hasNextPage={maybe(
-                            () =>
-                              collectionProductsData.data.collection.products
-                                .pageInfo.hasNextPage,
-                            false
-                          )}
-                          sortOptions={sortOptions}
-                          activeSortOption={filters.sortBy}
-                          filters={filters}
-                          products={
-                            collectionProductsData.data.collection.products
-                          }
-                          onAttributeFiltersChange={onFiltersChange}
-                          onLoadMore={handleLoadMore}
-                          activeFilters={
-                            filters!.attributes
-                              ? Object.keys(filters!.attributes).length
-                              : 0
-                          }
-                          onOrder={value => {
-                            setSort(value.value);
-                          }}
-                        />
-                      </MetaWrapper>
-                    );
-                  }
-
-                  return null;
-                }}
-              </TypedCollectionProductsQuery>
-            );
           }}
-        </TypedCollectionProductsDataQuery>
+        </TypedCollectionProductsQuery>
       )}
     </NetworkStatus>
   );

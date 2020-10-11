@@ -9,6 +9,9 @@
     "target": "es6",
     "noUnusedLocals": true,
     "paths": {
+      "@temp/*": ["./src/*"],
+      "@app/*": ["./src/@next/*"],
+      "@sdk/*": ["./src/@sdk/*"],
       "@components/*": ["./src/@next/components/*"],
       "@components/atoms": ["./src/@next/components/atoms/index.ts"],
       "@components/molecules": ["./src/@next/components/molecules/index.ts"],
@@ -22,13 +25,8 @@
       "@utils/*": ["./src/@next/utils/*"],
       "@hooks": ["./src/@next/hooks/index.ts"],
       "@hooks/*": ["./src/@next/hooks/*"],
-      "@types": ["./src/@next/types/index.ts"],
-      "@types/*": ["./src/@next/types/*"],
-      "@app/*": ["./src/@next/*"],
-      "@locale/*": ["./locale/*"],
-      "@temp/*": ["./src/*"]
+      "@types": ["./src/@next/types/index.ts"]
     },
-    "resolveJsonModule": true,
     "skipLibCheck": true
   },
   "exclude": ["node_modules"]

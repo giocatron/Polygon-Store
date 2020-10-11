@@ -1,7 +1,6 @@
 import "./scss/index.scss";
 
 import * as React from "react";
-import { FormattedMessage } from "react-intl";
 import ReactSVG from "react-svg";
 
 import {
@@ -10,7 +9,7 @@ import {
   Online,
   Overlay,
   OverlayContextInterface,
-  PasswordResetRequestForm,
+  PasswordResetForm
 } from "../..";
 
 import closeImg from "../../../images/x.svg";
@@ -18,13 +17,11 @@ import closeImg from "../../../images/x.svg";
 const Password: React.FC<{ overlay: OverlayContextInterface }> = ({
   overlay,
 }) => (
-  <Overlay testingContext="passwordOverlay" context={overlay}>
+  <Overlay context={overlay}>
     <div className="password-reset">
       <Online>
         <div className="overlay__header">
-          <p className="overlay__header-text">
-            <FormattedMessage defaultMessage="Reset your password" />
-          </p>
+          <p className="overlay__header-text">Reset your password</p>
           <ReactSVG
             path={closeImg}
             onClick={overlay.hide}
@@ -32,7 +29,7 @@ const Password: React.FC<{ overlay: OverlayContextInterface }> = ({
           />
         </div>
         <div className="password-reset__content">
-          <PasswordResetRequestForm />
+          <PasswordResetForm />
         </div>
       </Online>
       <Offline>

@@ -2,7 +2,6 @@ import "./scss/index.scss";
 
 import classNames from "classnames";
 import * as React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
 import { Link } from "react-router-dom";
 
 import { Button, Loader, ProductsFeatured } from "../../components";
@@ -27,7 +26,6 @@ const Page: React.FC<{
   const categoriesExist = () => {
     return categories && categories.edges && categories.edges.length > 0;
   };
-  const intl = useIntl();
 
   return (
     <>
@@ -45,16 +43,12 @@ const Page: React.FC<{
         <div className="home-page__hero-text">
           <div>
             <span className="home-page__hero__title">
-              <h1>
-                <FormattedMessage defaultMessage="Final reduction" />
-              </h1>
+              <h1>Final reduction</h1>
             </span>
           </div>
           <div>
             <span className="home-page__hero__title">
-              <h1>
-                <FormattedMessage defaultMessage="Up to 70% off sale" />
-              </h1>
+              <h1>Up to 70% off sale</h1>
             </span>
           </div>
         </div>
@@ -69,23 +63,17 @@ const Page: React.FC<{
                   categories.edges[0].node.name
                 )}
               >
-                <Button testingContext="homepageHeroActionButton">
-                  <FormattedMessage defaultMessage="Shop sale" />
-                </Button>
+                <Button>Shop sale</Button>
               </Link>
             )
           )}
         </div>
       </div>
-      <ProductsFeatured
-        title={intl.formatMessage({ defaultMessage: "Featured" })}
-      />
+      <ProductsFeatured />
       {categoriesExist() && (
         <div className="home-page__categories">
           <div className="container">
-            <h3>
-              <FormattedMessage defaultMessage="Shop by category" />
-            </h3>
+            <h3>Shop by category</h3>
             <div className="home-page__categories__list">
               {categories.edges.map(({ node: category }) => (
                 <div key={category.id}>

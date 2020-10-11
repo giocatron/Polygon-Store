@@ -60,22 +60,20 @@ exports[`Storyshots @components/organisms/CheckoutReview default 1`] = `
 >
   <div
     className=""
-    data-test="sectionTitle"
   >
     <h3
       className="c1"
-      data-test="checkoutPageSubtitle"
+      data-cy="checkoutPageSubtitle"
     >
       REVIEW ORDER
     </h3>
     <div
       className="c2"
     >
-      <section
-        data-test="shippingAddressSection"
-      >
+      <section>
         <h4
           className="c3"
+          data-cy="checkoutReviewSectionTitle"
         >
           Shipping Address
         </h4>
@@ -83,11 +81,10 @@ exports[`Storyshots @components/organisms/CheckoutReview default 1`] = `
           className="c4"
         />
       </section>
-      <section
-        data-test="billingAddressSection"
-      >
+      <section>
         <h4
           className="c3"
+          data-cy="checkoutReviewSectionTitle"
         >
           Billing Address
         </h4>
@@ -98,6 +95,7 @@ exports[`Storyshots @components/organisms/CheckoutReview default 1`] = `
       <section>
         <h4
           className="c3"
+          data-cy="checkoutReviewSectionTitle"
         >
           Shipping Method
         </h4>
@@ -106,12 +104,12 @@ exports[`Storyshots @components/organisms/CheckoutReview default 1`] = `
         />
         <p
           className="c5"
-          data-test="shippingMethodName"
         />
       </section>
       <section>
         <h4
           className="c3"
+          data-cy="checkoutReviewSectionTitle"
         >
           Payment Method
         </h4>
@@ -120,7 +118,6 @@ exports[`Storyshots @components/organisms/CheckoutReview default 1`] = `
         />
         <p
           className="c5"
-          data-test="paymentMethodName"
         />
       </section>
     </div>

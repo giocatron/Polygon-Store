@@ -17,7 +17,6 @@ const DEFAULT_BACKGROUND_COLOR = "#fff";
  * @param ref Reference to the element to check.
  */
 export const getBackgroundColor = (ref: any): string => {
-  /* eslint-disable-next-line react/no-find-dom-node */
   const el = ReactDOM.findDOMNode(ref);
   if (el && el.parentElement) {
     if (el.nodeName === "BODY") {

@@ -14,7 +14,7 @@ const OverlayManager: React.FC = () => (
     {overlay => {
       switch (overlay.type) {
         case OverlayType.modal:
-          return <Modal testingContext="modal" overlay={overlay} />;
+          return <Modal overlay={overlay} />;
 
         case OverlayType.message:
           return <Notification overlay={overlay} />;
@@ -38,7 +38,7 @@ const OverlayManager: React.FC = () => (
           return <MobileNav overlay={overlay} />;
 
         case OverlayType.mainMenuNav:
-          return <Overlay testingContext="mainMenuOverlay" context={overlay} />;
+          return <Overlay context={overlay} />;
 
         default:
           return null;

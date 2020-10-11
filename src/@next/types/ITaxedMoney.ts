@@ -1,9 +1,10 @@
-export interface IMoney {
-  amount: number;
-  currency: string;
-}
-
 export interface ITaxedMoney {
-  net: IMoney;
-  gross: IMoney;
+  net: {
+    amount: number;
+    currency: string;
+  };
+  gross: {
+    amount: number;
+    currency: string;
+  };
 }

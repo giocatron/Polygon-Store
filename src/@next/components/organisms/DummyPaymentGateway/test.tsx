@@ -21,7 +21,11 @@ describe("<DummyPaymentGateway />", () => {
     expect(wrapper.text()).toContain(statuses[0].label);
     expect(wrapper.text()).toContain(statuses[1].label);
     expect(wrapper.text()).toContain(statuses[2].label);
-    const getValue = (n: number) => wrapper.find("input").at(n).prop("value");
+    const getValue = (n: number) =>
+      wrapper
+        .find("input")
+        .at(n)
+        .prop("value");
     expect(getValue(0)).toEqual(statuses[0].token);
     expect(getValue(1)).toEqual(statuses[1].token);
     expect(getValue(2)).toEqual(statuses[2].token);
@@ -37,7 +41,7 @@ describe("<DummyPaymentGateway />", () => {
 
     const input = wrapper.find("input").at(0);
     const form = wrapper.find("form");
-    const { token } = statuses[0];
+    const token = statuses[0].token;
 
     input.simulate("change", {
       target: { value: token },

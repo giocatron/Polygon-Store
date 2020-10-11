@@ -294,7 +294,7 @@ exports[`Storyshots @components/organisms/FilterSidebar default 1`] = `
     >
       <div
         className="c3"
-        data-test="filterSidebar"
+        data-cy="filter-sidebar"
       >
         <div
           className="c4"
@@ -304,7 +304,7 @@ exports[`Storyshots @components/organisms/FilterSidebar default 1`] = `
           </span>
           <div
             className="c5"
-            data-test="hideFilters"
+            data-cy="icon_button"
             onClick={[Function]}
           >
             <svg
@@ -448,7 +448,6 @@ exports[`Storyshots @components/organisms/FilterSidebar default 1`] = `
             <button
               className="c12"
               color="secondary"
-              data-test="viewAllButton"
               onClick={[Function]}
               size="sm"
             >

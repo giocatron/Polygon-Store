@@ -1,6 +1,5 @@
-import { useOrdersByUser } from "@saleor/sdk/";
+import { useOrdersByUser } from "@sdk/react/";
 import React from "react";
-import { FormattedMessage } from "react-intl";
 
 import { Button, Loader } from "@components/atoms";
 import { OrderTabel } from "@components/molecules";
@@ -24,11 +23,11 @@ export const OrdersHistory: React.FC<IProps> = ({ history }: IProps) => {
     <Loader />
   ) : (
     <>
-      <OrderTabel orders={data?.edges} history={history} />
-      {data?.pageInfo.hasNextPage && (
+      <OrderTabel orders={data!.edges} history={history} />
+      {data!.pageInfo.hasNextPage && (
         <S.Wrapper>
           <Button
-            testingContext="loadMoreOrdersButton"
+            data-testid="load_more__button"
             onClick={() => {
               loadMore({
                 after: data!.pageInfo.endCursor,
@@ -36,7 +35,7 @@ export const OrdersHistory: React.FC<IProps> = ({ history }: IProps) => {
               });
             }}
           >
-            <FormattedMessage defaultMessage="Load more" />
+            Load more
           </Button>
         </S.Wrapper>
       )}

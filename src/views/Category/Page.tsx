@@ -1,9 +1,7 @@
 import "./scss/index.scss";
 
 import * as React from "react";
-import { useIntl } from "react-intl";
 
-import { commonMessages } from "@temp/intl";
 import { IFilterAttributes, IFilters } from "@types";
 import {
   Breadcrumbs,
@@ -17,8 +15,7 @@ import { FilterSidebar } from "../../@next/components/organisms/FilterSidebar";
 
 import { maybe } from "../../core/utils";
 
-import { Category_category } from "./gqlTypes/Category";
-import { CategoryProducts_products } from "./gqlTypes/CategoryProducts";
+import { Category_category, Category_products } from "./gqlTypes/Category";
 
 interface SortItem {
   label: string;
@@ -35,7 +32,7 @@ interface PageProps {
   displayLoader: boolean;
   filters: IFilters;
   hasNextPage: boolean;
-  products: CategoryProducts_products;
+  products: Category_products;
   sortOptions: SortOptions;
   clearFilters: () => void;
   onLoadMore: () => void;
@@ -63,7 +60,6 @@ const Page: React.FC<PageProps> = ({
   );
   const hasProducts = canDisplayProducts && !!products.totalCount;
   const [showFilters, setShowFilters] = React.useState(false);
-  const intl = useIntl();
 
   const getAttribute = (attributeSlug: string, valueSlug: string) => {
     return {
@@ -118,11 +114,7 @@ const Page: React.FC<PageProps> = ({
         )}
       </div>
 
-      {!hasProducts && (
-        <ProductsFeatured
-          title={intl.formatMessage(commonMessages.youMightLike)}
-        />
-      )}
+      {!hasProducts && <ProductsFeatured title="You might like" />}
     </div>
   );
 };
