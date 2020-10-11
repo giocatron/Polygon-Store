@@ -3,7 +3,7 @@ module.exports = {
     excludes: ["**/__tests__/**/*", "**/@sdk/**/*"],
     service: {
       name: "saleor",
-      url: "https://zizopixels11-core.herokuapp.com/graphql/",
+      url: "http://localhost:8000/graphql/",
     },
   },
 };

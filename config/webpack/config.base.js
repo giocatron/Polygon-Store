@@ -114,7 +114,7 @@ module.exports = ({ sourceDir, distDir }) => ({
       prefix: "images/favicons/",
     }),
     new webpack.EnvironmentPlugin({
-      API_URI: "https://zizopixels11-core.herokuapp.com/graphql/",
+      API_URI: "http://localhost:8000/graphql/",
       DEMO_MODE: false,
       GTM_ID: undefined,
       SENTRY_APM: "0",

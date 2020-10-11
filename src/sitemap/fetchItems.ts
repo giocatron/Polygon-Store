@@ -14,7 +14,7 @@ import {
   getProductsQuery,
 } from "./queries";
 
-const API_URL = process.env.API_URI || "https://zizopixels11-core.herokuapp.com/graphql/";
+const API_URL = process.env.API_URI || "/graphql/";
 
 const fetchItems = async ({ query, perPage = 100 }, callback: any) => {
   const client = new ApolloClient({
