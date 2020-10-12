@@ -7,6 +7,7 @@ import {
   BraintreePaymentGateway,
   DummyPaymentGateway,
   StripePaymentGateway,
+  AdyenPaymentGateway,
 } from "..";
 import * as S from "./styles";
 import { IProps } from "./types";
@@ -22,6 +23,8 @@ const PaymentGatewaysList: React.FC<IProps> = ({
   formRef,
   formId,
   processPayment,
+  submitPayment,
+  submitPaymentSuccess,
   errors,
   onError,
 }: IProps) => {
@@ -36,16 +39,16 @@ const PaymentGatewaysList: React.FC<IProps> = ({
               <div key={index}>
                 <S.Tile checked={checked}>
                   <Radio
-                    data-cy="checkoutPaymentGatewayBraintreeInput"
+                    data-test="checkoutPaymentGatewayBraintreeInput"
                     name="payment-method"
                     value="credit-card"
                     checked={checked}
                     onChange={() =>
                       selectPaymentGateway && selectPaymentGateway(id)
                     }
-                    customLabel={true}
+                    customLabel
                   >
-                    <span data-cy="checkoutPaymentGatewayBraintreeName">
+                    <span data-test="checkoutPaymentGatewayBraintreeName">
                       {name}
                     </span>
                   </Radio>
@@ -70,16 +73,16 @@ const PaymentGatewaysList: React.FC<IProps> = ({
               <div key={index}>
                 <S.Tile checked={checked}>
                   <Radio
-                    data-cy="checkoutPaymentGatewayDummyInput"
+                    data-test="checkoutPaymentGatewayDummyInput"
                     name="payment-method"
                     value="dummy"
                     checked={checked}
                     onChange={() =>
                       selectPaymentGateway && selectPaymentGateway(id)
                     }
-                    customLabel={true}
+                    customLabel
                   >
-                    <span data-cy="checkoutPaymentGatewayDummyName">
+                    <span data-test="checkoutPaymentGatewayDummyName">
                       {name}
                     </span>
                   </Radio>
@@ -100,16 +103,16 @@ const PaymentGatewaysList: React.FC<IProps> = ({
               <div key={index}>
                 <S.Tile checked={checked}>
                   <Radio
-                    data-cy="checkoutPaymentGatewayStripeInput"
+                    data-test="checkoutPaymentGatewayStripeInput"
                     name="payment-method"
                     value="stripe"
                     checked={checked}
                     onChange={() =>
                       selectPaymentGateway && selectPaymentGateway(id)
                     }
-                    customLabel={true}
+                    customLabel
                   >
-                    <span data-cy="checkoutPaymentGatewayStripeName">
+                    <span data-test="checkoutPaymentGatewayStripeName">
                       {name}
                     </span>
                   </Radio>
@@ -128,6 +131,44 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                 )}
               </div>
             );
+
+          case PROVIDERS.ADYEN.label:
+            return (
+              <div key={index}>
+                <S.Tile checked={checked}>
+                  <Radio
+                    data-test="checkoutPaymentGatewayAdyenInput"
+                    name="payment-method"
+                    value="adyen"
+                    checked={checked}
+                    onChange={() =>
+                      selectPaymentGateway && selectPaymentGateway(id)
+                    }
+                    customLabel
+                  >
+                    <span data-test="checkoutPaymentGatewayAdyenName">
+                      {name}
+                    </span>
+                  </Radio>
+                </S.Tile>
+                {checked && (
+                  <AdyenPaymentGateway
+                    config={config}
+                    formRef={formRef}
+                    scriptConfig={PROVIDERS.ADYEN.script}
+                    styleConfig={PROVIDERS.ADYEN.style}
+                    processPayment={() => processPayment(id)}
+                    submitPayment={submitPayment}
+                    submitPaymentSuccess={submitPaymentSuccess}
+                    errors={errors}
+                    onError={onError}
+                  />
+                )}
+              </div>
+            );
+
+          default:
+            return null;
         }
       })}
       {!selectedPaymentGateway && errors && <ErrorMessage errors={errors} />}
