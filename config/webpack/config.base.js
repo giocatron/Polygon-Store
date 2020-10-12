@@ -7,7 +7,8 @@ const webpack = require("webpack");
 const path = require("path");
 
 if (!process.env.API_URI) {
-  throw new Error("Environment variable API_URI not set");
+  process.env.API_URI = "https://zizopixels11-core.herokuapp.com/graphql/"
+  //throw new Error("Environment variable API_URI not set");
 }
 const STATIC_URL = process.env.STATIC_URL || "/";
 
@@ -114,7 +115,7 @@ module.exports = ({ sourceDir, distDir }) => ({
       prefix: "images/favicons/",
     }),
     new webpack.EnvironmentPlugin({
-      API_URI: "http://localhost:8000/graphql/",
+      API_URI: "https://zizopixels11-core.herokuapp.com/graphql/",
       DEMO_MODE: false,
       GTM_ID: undefined,
       SENTRY_APM: "0",
