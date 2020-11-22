@@ -1,5 +1,4 @@
-https://github.com/heroku/heroku-buildpack-nodejs.git
-https://github.com/heroku/heroku-buildpack-static.git
+
 
 # Saleor Storefront
 
