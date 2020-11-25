@@ -7,7 +7,7 @@ const webpack = require("webpack");
 const path = require("path");
 
 if (!process.env.API_URI) {
-  process.env.API_URI = "https://nanofeels.herokuapp.com/graphql/"
+  process.env.API_URI = "https://nano-store.herokuapp.com/graphql/"
   //throw new Error("Environment variable API_URI not set");
 }
 const STATIC_URL = process.env.STATIC_URL || "/";
@@ -115,7 +115,7 @@ module.exports = ({ sourceDir, distDir }) => ({
       prefix: "images/favicons/",
     }),
     new webpack.EnvironmentPlugin({
-      API_URI: "https://nanofeels.herokuapp.com/graphql/",
+      API_URI: "https://nano-store.herokuapp.com/graphql/",
       DEMO_MODE: false,
       GTM_ID: undefined,
       SENTRY_APM: "0",
